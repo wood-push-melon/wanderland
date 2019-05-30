@@ -157,7 +157,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 156 words)
+                    a minute read (About 158 words)
                 </span>
                 
                 
@@ -173,7 +173,7 @@
             <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.   </p>
 <p>Example:</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>At the first glance, we need to solve this problem with regular way in math, adding digits at the same position one by one. However, the edge case is that the resulting list may have carry bit.   </p>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>At the first glance, we need to solve this problem with regular way in math, adding digits at the same position one by one. However, the edge case is that the resulting list may have an extra carry bit.   </p>
 <p><strong>Sentinel strategy</strong> is also applied in here.   </p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_two_numbers</span><span class="hljs-params">(l1: ListNode, l2: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    carry = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> l1 <span class="hljs-keyword">or</span> l2 <span class="hljs-keyword">or</span> carry:</span><br><span class="line">        <span class="hljs-keyword">if</span> l1:</span><br><span class="line">            carry += l1.val</span><br><span class="line">            l1 = l1.next</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> l2:</span><br><span class="line">            carry += l2.val</span><br><span class="line">            l2 = l2.next</span><br><span class="line"></span><br><span class="line">        curr.next = ListNode(carry % <span class="hljs-number">10</span>)</span><br><span class="line">        curr = curr.next</span><br><span class="line">        carry //= <span class="hljs-number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
 
@@ -340,17 +340,17 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        14
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <p class="title has-text-weight-normal">
-                        0
+                        1
                     </p>
                 </div>
             </div>
@@ -360,7 +360,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        15
                     </p>
                 </div>
             </div>
@@ -446,7 +446,15 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
+            <span class="level-start">
+                <span class="level-item">LeetCode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -458,7 +466,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12.5px;">Hash Table</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 10px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 10px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 15px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 16.67px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 13.33px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 13.33px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 13.33px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16.67px;">Two Pointers</a>
     </div>
 </div>
 
@@ -472,6 +480,44 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Nth Node From End of List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-30T14:55:23.000Z">2019-05-30</time></div>
+                    <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="has-link-black-ter is-size-6">Remove Nth Node From End of List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
+                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -530,44 +576,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/palindrome-number/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Number">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T08:01:51.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/palindrome-number/" class="has-link-black-ter is-size-6">Palindrome Number</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/02/20/4sum/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="4 Sum">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time></div>
-                    <a href="/wanderland/2019/02/20/4sum/" class="has-link-black-ter is-size-6">4 Sum</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -586,7 +594,7 @@
                     <span class="level-item">May 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -677,9 +685,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -693,14 +715,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -714,7 +736,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -735,7 +757,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -764,6 +786,44 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Nth Node From End of List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-30T14:55:23.000Z">2019-05-30</time></div>
+                    <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="has-link-black-ter is-size-6">Remove Nth Node From End of List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
+                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/05/23/add-two-numbers/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers">
@@ -819,44 +879,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/palindrome-number/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Number">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T08:01:51.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/palindrome-number/" class="has-link-black-ter is-size-6">Palindrome Number</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/02/20/4sum/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="4 Sum">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time></div>
-                    <a href="/wanderland/2019/02/20/4sum/" class="has-link-black-ter is-size-6">4 Sum</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -875,7 +897,7 @@
                     <span class="level-item">May 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -966,9 +988,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -982,14 +1018,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1003,7 +1039,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1024,7 +1060,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 

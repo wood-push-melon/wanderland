@@ -141,13 +141,119 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-30T14:55:23.000Z">2019-05-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 164 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/05/30/remove-nth-node-from-end/">Remove Nth Node From End of List</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list, remove the <em>n</em>-th node from the end of list and return its head.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</span><br><span class="line">After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>This problem is a perfect match for <strong>two pointer</strong> strategy. But in this case, we don’t declare <strong>slow</strong> and <strong>fast</strong> starting at the same position because we need to think about the edge case: when the removed node is head node.   </p>
+<p><strong>Note</strong></p>
+<ul>
+<li>We use <code>range</code> to form a loop whenever possible because <code>range</code> is implemented in <code>C</code> language at the bottom.   </li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">remove_nth_from_end</span><span class="hljs-params">(head: ListNode, n: int)</span> -&gt; ListNode:</span></span><br><span class="line">    slow = dummy = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    dummy.next = fast = head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">        fast = fast.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> fast:</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next</span><br><span class="line"></span><br><span class="line">    slow.next = slow.next.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 166 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/05/29/merge-k-lists/">Merge k Sorted Lists</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Merge <em>k</em> sorted linked lists and return it as one sorted list. Analyze and describe its complexity.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">    1-&gt;4-&gt;5,</span><br><span class="line">    1-&gt;3-&gt;4,</span><br><span class="line">    2-&gt;6</span><br><span class="line">]</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>This is a perfect case where heap data structure applies. We can construct a mininum heap at the beginning, and put new node into the heap after retrieving the minimum node each time.   </p>
+<p><strong>Note</strong></p>
+<ul>
+<li>Pyhton 3 has different implementation in PriorityQueue module. Dealing with tasks with same priority, we have to put some element to keep the stability. I use timestamp in here.   </li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> queue <span class="hljs-keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_k_lists</span><span class="hljs-params">(lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">    q = PriorityQueue()</span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> lists:</span><br><span class="line">        <span class="hljs-keyword">if</span> l:</span><br><span class="line">            q.put((l.val, time.time(), l))</span><br><span class="line"></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> q.empty():</span><br><span class="line">        val, _, node = q.get()</span><br><span class="line">        curr.next = node</span><br><span class="line">        curr = curr.next</span><br><span class="line">        node = node.next</span><br><span class="line">        <span class="hljs-keyword">if</span> node:</span><br><span class="line">            q.put((node.val, time.time(), node))</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-05-23T15:31:43.000Z">2019-05-23</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 156 words)
+                    a minute read (About 158 words)
                 </span>
                 
                 
@@ -163,7 +269,7 @@
             <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.   </p>
 <p>Example:</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>At the first glance, we need to solve this problem with regular way in math, adding digits at the same position one by one. However, the edge case is that the resulting list may have carry bit.   </p>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>At the first glance, we need to solve this problem with regular way in math, adding digits at the same position one by one. However, the edge case is that the resulting list may have an extra carry bit.   </p>
 <p><strong>Sentinel strategy</strong> is also applied in here.   </p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_two_numbers</span><span class="hljs-params">(l1: ListNode, l2: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    carry = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> l1 <span class="hljs-keyword">or</span> l2 <span class="hljs-keyword">or</span> carry:</span><br><span class="line">        <span class="hljs-keyword">if</span> l1:</span><br><span class="line">            carry += l1.val</span><br><span class="line">            l1 = l1.next</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> l2:</span><br><span class="line">            carry += l2.val</span><br><span class="line">            l2 = l2.next</span><br><span class="line"></span><br><span class="line">        curr.next = ListNode(carry % <span class="hljs-number">10</span>)</span><br><span class="line">        curr = curr.next</span><br><span class="line">        carry //= <span class="hljs-number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
 
@@ -535,110 +641,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-12T06:56:31.000Z">2019-02-12</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 149 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/12/2sum-bst/">Two Sum IV - Input is a BST</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.   </p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 9</span><br><span class="line"></span><br><span class="line">Output: True</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 28</span><br><span class="line"></span><br><span class="line">Output: False</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The solution to this problem is sort of similar to the one in the original <strong>Two Sum</strong> problem.<br>The only difference is to traversing a <strong>Tree</strong> instead of an <strong>Array</strong>. We use <strong>BFS</strong> to iterate the whole structure, but <strong>DFS</strong> is completely a feasible alternative too.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findTarget</span><span class="hljs-params">(root: <span class="hljs-string">'TreeNode'</span>, k: <span class="hljs-string">'int'</span>)</span> -&gt; 'bool':</span></span><br><span class="line">    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span></span><br><span class="line"></span><br><span class="line">    cache = set()</span><br><span class="line">    queue = [root]</span><br><span class="line">    <span class="hljs-keyword">while</span> queue:</span><br><span class="line">        node = queue.pop(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">if</span> k - node.val <span class="hljs-keyword">in</span> cache:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span></span><br><span class="line"></span><br><span class="line">        cache.add(node.val)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> node.left:</span><br><span class="line">            queue.append(node.left)</span><br><span class="line">        <span class="hljs-keyword">if</span> node.right:</span><br><span class="line">            queue.append(node.right)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span></span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-10T14:22:23.000Z">2019-02-10</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 445 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/10/2sum-sorted/">Two Sum II - Input array is sorted</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.   </p>
-<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.   </p>
-<p><strong>Note</strong>:</p>
-<ul>
-<li>Your returned answers (both index1 and index2) are not zero-based.</li>
-<li>You may assume that each input would have exactly one solution and you may not use the same element twice.</li>
-</ul>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: numbers = [2,7,11,15], target = 9</span><br><span class="line"></span><br><span class="line">Output: [1,2]</span><br><span class="line"></span><br><span class="line">Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The key point is to take advantage of <strong>sorted array</strong>. We can use <strong>two pointers</strong> strategy or <strong>binary search</strong> method to solve this problem. Two solutions are shown below respectively. Solution with two pointers is relatively easy to catch, and it should be the <em>first</em> answer you provide in an interview.   </p>
-<p><strong>Two pointer solution:</strong></p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution with two pointers</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    lo, hi = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> lo &lt; hi:</span><br><span class="line">        s = nums[lo] + nums[hi]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [lo+<span class="hljs-number">1</span>, hi+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            lo += <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            hi -= <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
-<p><strong>Binary search solution:</strong></p>
-<p>Binary search solution is kind of <em>difficult</em> to understant compared with two pointer one. Basically it uses binary search algorithm to move <code>start</code> or <code>end</code> pointer faster rather than one step in each iteration.   </p>
-<p>It tries to move <code>start</code> to a new position where <code>nums[start]</code> is the first value that <code>nums[start] &gt;= target - nums[end]</code> if the sum is less than <code>target</code>. Similar logic applies to <code>end</code> pointer.   </p>
-<p>In each helper function, we only consider the pointer we care about.</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution using binary search</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    start, end = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt; end:</span><br><span class="line">        s = nums[start] + nums[end]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [start+<span class="hljs-number">1</span>, end+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            <span class="hljs-comment"># need to adjust start pointer</span></span><br><span class="line">            start = binary_search_start(nums, start, end, target-nums[end])</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-comment"># need to adjust end pointer</span></span><br><span class="line">            end = binary_search_end(nums, start, end, target-nums[start])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_start</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the start pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[start] is the first element greater than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &lt; key:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_end</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the end pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[end] is the last element less than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &gt; key:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> end</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -701,17 +703,17 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        14
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <p class="title has-text-weight-normal">
-                        0
+                        1
                     </p>
                 </div>
             </div>
@@ -721,7 +723,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        15
                     </p>
                 </div>
             </div>
@@ -807,7 +809,15 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
+            <span class="level-start">
+                <span class="level-item">LeetCode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -819,7 +829,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12.5px;">Hash Table</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 10px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 10px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 15px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 16.67px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 13.33px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 13.33px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 13.33px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16.67px;">Two Pointers</a>
     </div>
 </div>
 
@@ -833,6 +843,44 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Nth Node From End of List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-30T14:55:23.000Z">2019-05-30</time></div>
+                    <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="has-link-black-ter is-size-6">Remove Nth Node From End of List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
+                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -891,44 +939,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/palindrome-number/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Number">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T08:01:51.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/palindrome-number/" class="has-link-black-ter is-size-6">Palindrome Number</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/02/20/4sum/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="4 Sum">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time></div>
-                    <a href="/wanderland/2019/02/20/4sum/" class="has-link-black-ter is-size-6">4 Sum</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -947,7 +957,7 @@
                     <span class="level-item">May 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1038,9 +1048,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1054,14 +1078,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1075,7 +1099,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1096,7 +1120,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1125,6 +1149,44 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Nth Node From End of List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-30T14:55:23.000Z">2019-05-30</time></div>
+                    <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="has-link-black-ter is-size-6">Remove Nth Node From End of List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
+                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/05/23/add-two-numbers/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers">
@@ -1180,44 +1242,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/palindrome-number/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Number">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T08:01:51.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/palindrome-number/" class="has-link-black-ter is-size-6">Palindrome Number</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/02/20/4sum/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="4 Sum">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time></div>
-                    <a href="/wanderland/2019/02/20/4sum/" class="has-link-black-ter is-size-6">4 Sum</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1236,7 +1260,7 @@
                     <span class="level-item">May 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1327,9 +1351,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1343,14 +1381,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1364,7 +1402,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1385,7 +1423,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
