@@ -151,6 +151,63 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-10T14:22:23.000Z">2019-02-10</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 445 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/10/2sum-sorted/">Two Sum II - Input array is sorted</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.   </p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.   </p>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>Your returned answers (both index1 and index2) are not zero-based.</li>
+<li>You may assume that each input would have exactly one solution and you may not use the same element twice.</li>
+</ul>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: numbers = [2,7,11,15], target = 9</span><br><span class="line"></span><br><span class="line">Output: [1,2]</span><br><span class="line"></span><br><span class="line">Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The key point is to take advantage of <strong>sorted array</strong>. We can use <strong>two pointers</strong> strategy or <strong>binary search</strong> method to solve this problem. Two solutions are shown below respectively. Solution with two pointers is relatively easy to catch, and it should be the <em>first</em> answer you provide in an interview.   </p>
+<p><strong>Two pointer solution:</strong></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution with two pointers</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    lo, hi = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> lo &lt; hi:</span><br><span class="line">        s = nums[lo] + nums[hi]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [lo+<span class="hljs-number">1</span>, hi+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            lo += <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            hi -= <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>Binary search solution:</strong></p>
+<p>Binary search solution is kind of <em>difficult</em> to understant compared with two pointer one. Basically it uses binary search algorithm to move <code>start</code> or <code>end</code> pointer faster rather than one step in each iteration.   </p>
+<p>It tries to move <code>start</code> to a new position where <code>nums[start]</code> is the first value that <code>nums[start] &gt;= target - nums[end]</code> if the sum is less than <code>target</code>. Similar logic applies to <code>end</code> pointer.   </p>
+<p>In each helper function, we only consider the pointer we care about.</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution using binary search</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    start, end = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt; end:</span><br><span class="line">        s = nums[start] + nums[end]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [start+<span class="hljs-number">1</span>, end+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            <span class="hljs-comment"># need to adjust start pointer</span></span><br><span class="line">            start = binary_search_start(nums, start, end, target-nums[end])</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-comment"># need to adjust end pointer</span></span><br><span class="line">            end = binary_search_end(nums, start, end, target-nums[start])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_start</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the start pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[start] is the first element greater than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &lt; key:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_end</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the end pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[end] is the last element less than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &gt; key:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> end</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-02-09T09:04:03.000Z">2019-02-09</time>
                 
                 
@@ -257,7 +314,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        14
+                        15
                     </p>
                 </div>
             </div>
@@ -369,7 +426,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li>
             </ul>
@@ -383,7 +440,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 16.67px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 13.33px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 13.33px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 13.33px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16.67px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12.5px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 15px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.5px;">Two Pointers</a>
     </div>
 </div>
 
@@ -397,6 +454,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/01/swap-nodes-in-pairs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Swap Nodes in Pairs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-01T09:25:28.000Z">2019-06-01</time></div>
+                    <a href="/wanderland/2019/06/01/swap-nodes-in-pairs/" class="has-link-black-ter is-size-6">Swap Nodes in Pairs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -474,25 +550,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/power-of-two/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Power of Two">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T09:22:48.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/power-of-two/" class="has-link-black-ter is-size-6">Power of Two</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -504,6 +561,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/05/">
@@ -632,14 +700,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -653,7 +721,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -703,6 +771,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/06/01/swap-nodes-in-pairs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Swap Nodes in Pairs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-01T09:25:28.000Z">2019-06-01</time></div>
+                    <a href="/wanderland/2019/06/01/swap-nodes-in-pairs/" class="has-link-black-ter is-size-6">Swap Nodes in Pairs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/05/30/remove-nth-node-from-end/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Nth Node From End of List">
@@ -777,25 +864,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/03/08/power-of-two/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Power of Two">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-08T09:22:48.000Z">2019-03-08</time></div>
-                    <a href="/wanderland/2019/03/08/power-of-two/" class="has-link-black-ter is-size-6">Power of Two</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -807,6 +875,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/05/">
@@ -935,14 +1014,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -956,7 +1035,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
                         <span class="tag">Sentinel</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
