@@ -151,6 +151,58 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-02T06:18:29.000Z">2019-06-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 312 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/06/02/reverse-nodes-k-group/">Reverse Nodes in k-Group</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list, reverse the nodes of a linked list <em>k</em> at a time and return its modified list.<br><em>k</em> is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of <em>k</em> then left-out nodes in the end should remain as it is.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong>:</p>
+<ul>
+<li><p>Only constant extra memory is allowed.</p>
+</li>
+<li><p>You may not alter the values in the list’s nodes, only nodes itself may be changed.   </p>
+</li>
+</ul>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>We can use the solution in <a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="noopener">Reverse Linked List</a> to reverse each group of the list. And then connect the <em>tail</em> of previous reversed part with the <em>head</em> of the next reversed part.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Tuple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse_k_group</span><span class="hljs-params">(head, k)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Inside each call stack:</span></span><br><span class="line"><span class="hljs-string">    - try to iterate k times to check if there are enough k nodes to reverse</span></span><br><span class="line"><span class="hljs-string">    - reverse k nodes starting from the head of current group</span></span><br><span class="line"><span class="hljs-string">    - connect the head (which is the tail after reversed) of the current group with the head of the next reversed k-node group</span></span><br><span class="line"><span class="hljs-string">    - return the head of current reversed group</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    count, curr = <span class="hljs-number">0</span>, head</span><br><span class="line">    <span class="hljs-keyword">while</span> count &lt; k <span class="hljs-keyword">and</span> curr:</span><br><span class="line">        curr = curr.next</span><br><span class="line">        count += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> count &lt; k:</span><br><span class="line">        <span class="hljs-keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    prev, nxt_head = reverse(head, k)</span><br><span class="line"></span><br><span class="line">    head.next = reverse_k_group(nxt_head, k)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse</span><span class="hljs-params">(head: ListNode, k: int)</span> -&gt; Tuple[ListNode, ListNode]:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Reverse a single group of nodes</span></span><br><span class="line"><span class="hljs-string">    For example: k = 3</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Before:</span></span><br><span class="line"><span class="hljs-string">    prev curr</span></span><br><span class="line"><span class="hljs-string">    |    |</span></span><br><span class="line"><span class="hljs-string">         1 -&gt; 2 -&gt; 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    After:</span></span><br><span class="line"><span class="hljs-string">              prev curr</span></span><br><span class="line"><span class="hljs-string">              |    |</span></span><br><span class="line"><span class="hljs-string">    1 &lt;- 2 &lt;- 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    prev, curr = <span class="hljs-keyword">None</span>, head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(count):</span><br><span class="line">        tmp = curr.next</span><br><span class="line">        curr.next = prev</span><br><span class="line">        prev = curr</span><br><span class="line">        curr = tmp</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev, curr</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-01T09:25:28.000Z">2019-06-01</time>
                 
                 <div class="level-item">
@@ -600,53 +652,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-12T06:56:31.000Z">2019-02-12</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 149 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/12/2sum-bst/">Two Sum IV - Input is a BST</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.   </p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 9</span><br><span class="line"></span><br><span class="line">Output: True</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 28</span><br><span class="line"></span><br><span class="line">Output: False</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The solution to this problem is sort of similar to the one in the original <strong>Two Sum</strong> problem.<br>The only difference is to traversing a <strong>Tree</strong> instead of an <strong>Array</strong>. We use <strong>BFS</strong> to iterate the whole structure, but <strong>DFS</strong> is completely a feasible alternative too.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findTarget</span><span class="hljs-params">(root: <span class="hljs-string">'TreeNode'</span>, k: <span class="hljs-string">'int'</span>)</span> -&gt; 'bool':</span></span><br><span class="line">    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span></span><br><span class="line"></span><br><span class="line">    cache = set()</span><br><span class="line">    queue = [root]</span><br><span class="line">    <span class="hljs-keyword">while</span> queue:</span><br><span class="line">        node = queue.pop(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">if</span> k - node.val <span class="hljs-keyword">in</span> cache:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span></span><br><span class="line"></span><br><span class="line">        cache.add(node.val)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> node.left:</span><br><span class="line">            queue.append(node.left)</span><br><span class="line">        <span class="hljs-keyword">if</span> node.right:</span><br><span class="line">            queue.append(node.right)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span></span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -709,17 +714,17 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        18
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        2
                     </p>
                 </div>
             </div>
@@ -729,7 +734,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        18
                     </p>
                 </div>
             </div>
@@ -816,6 +821,14 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/wanderland/categories/Collection/">
+            <span class="level-start">
+                <span class="level-item">Collection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
             <span class="level-start">
                 <span class="level-item">LeetCode</span>
@@ -835,7 +848,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12.5px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 15px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.5px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12.5px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 17.5px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.5px;">Two Pointers</a>
     </div>
 </div>
 
@@ -849,6 +862,63 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/02/reverse-nodes-k-group/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reverse Nodes in k-Group">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T06:18:29.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/reverse-nodes-k-group/" class="has-link-black-ter is-size-6">Reverse Nodes in k-Group</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/02/articles/tools/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="一些有用的工具以及资源">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T01:54:15.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/articles/tools/" class="has-link-black-ter is-size-6">一些有用的工具以及资源</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/02/articles/articles/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="一些有趣的文章">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T01:36:38.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/articles/articles/" class="has-link-black-ter is-size-6">一些有趣的文章</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -888,63 +958,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
-                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/05/23/add-two-numbers/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-23T15:31:43.000Z">2019-05-23</time></div>
-                    <a href="/wanderland/2019/05/23/add-two-numbers/" class="has-link-black-ter is-size-6">Add Two Numbers</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/04/14/learn-resource/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Learning Materials">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T15:20:00.000Z">2019-04-14</time></div>
-                    <a href="/wanderland/2019/04/14/learn-resource/" class="has-link-black-ter is-size-6">Learning Materials</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -963,7 +976,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1051,6 +1064,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Article/">
+                        <span class="tag">Article</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Big-Manipulation/">
                         <span class="tag">Big Manipulation</span>
                         <span class="tag is-grey">1</span>
@@ -1095,14 +1115,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1110,6 +1130,13 @@
                     <a class="tags has-addons" href="/wanderland/tags/Math/">
                         <span class="tag">Math</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Recursion/">
+                        <span class="tag">Recursion</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1123,6 +1150,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sorting/">
                         <span class="tag">Sorting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tools/">
+                        <span class="tag">Tools</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1166,6 +1200,63 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/06/02/reverse-nodes-k-group/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reverse Nodes in k-Group">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T06:18:29.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/reverse-nodes-k-group/" class="has-link-black-ter is-size-6">Reverse Nodes in k-Group</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/02/articles/tools/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="一些有用的工具以及资源">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T01:54:15.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/articles/tools/" class="has-link-black-ter is-size-6">一些有用的工具以及资源</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/06/02/articles/articles/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="一些有趣的文章">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T01:36:38.000Z">2019-06-02</time></div>
+                    <a href="/wanderland/2019/06/02/articles/articles/" class="has-link-black-ter is-size-6">一些有趣的文章</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/06/01/swap-nodes-in-pairs/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Swap Nodes in Pairs">
@@ -1202,63 +1293,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/05/29/merge-k-lists/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Merge k Sorted Lists">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time></div>
-                    <a href="/wanderland/2019/05/29/merge-k-lists/" class="has-link-black-ter is-size-6">Merge k Sorted Lists</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/05/23/add-two-numbers/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-23T15:31:43.000Z">2019-05-23</time></div>
-                    <a href="/wanderland/2019/05/23/add-two-numbers/" class="has-link-black-ter is-size-6">Add Two Numbers</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/04/14/learn-resource/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Learning Materials">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-14T15:20:00.000Z">2019-04-14</time></div>
-                    <a href="/wanderland/2019/04/14/learn-resource/" class="has-link-black-ter is-size-6">Learning Materials</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1277,7 +1311,7 @@
                     <span class="level-item">June 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1365,6 +1399,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Article/">
+                        <span class="tag">Article</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Big-Manipulation/">
                         <span class="tag">Big Manipulation</span>
                         <span class="tag is-grey">1</span>
@@ -1409,14 +1450,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1424,6 +1465,13 @@
                     <a class="tags has-addons" href="/wanderland/tags/Math/">
                         <span class="tag">Math</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Recursion/">
+                        <span class="tag">Recursion</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1437,6 +1485,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sorting/">
                         <span class="tag">Sorting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tools/">
+                        <span class="tag">Tools</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
