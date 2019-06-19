@@ -2,24 +2,24 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Reverse Nodes in k-Group - WanderLand</title>
+<title>教程类文章 - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="ProblemGiven a linked list, reverse the nodes of a linked list k at a time and return its modified list.k is a positive integer and is less than or equal to the length of the linked list. If the numbe">
-<meta name="keywords" content="LeetCode,Linked List,Recursion">
+    <meta name="description" content="Docker Dockerizing a React AppReact 应用的 Docker 化。文中介绍了如何将 React 应用打包成生产环境可用的容器  Python 如何用 Python 实现一个简单的 JSON 解析器此文描述了使用 Python 如何实现一个简单的 JSON Parser，主要体现在词法分析 (lexical) 和语法分析 (syntactic) 两个步骤  前端CSS">
+<meta name="keywords" content="Tutorial">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reverse Nodes in k-Group">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/06/02/reverse-nodes-k-group/index.html">
+<meta property="og:title" content="教程类文章">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/06/16/articles/tutorials/index.html">
 <meta property="og:site_name" content="WanderLand">
-<meta property="og:description" content="ProblemGiven a linked list, reverse the nodes of a linked list k at a time and return its modified list.k is a positive integer and is less than or equal to the length of the linked list. If the numbe">
+<meta property="og:description" content="Docker Dockerizing a React AppReact 应用的 Docker 化。文中介绍了如何将 React 应用打包成生产环境可用的容器  Python 如何用 Python 实现一个简单的 JSON 解析器此文描述了使用 Python 如何实现一个简单的 JSON Parser，主要体现在词法分析 (lexical) 和语法分析 (syntactic) 两个步骤  前端CSS">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-02T06:54:53.682Z">
+<meta property="og:updated_time" content="2019-06-16T14:13:53.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reverse Nodes in k-Group">
-<meta name="twitter:description" content="ProblemGiven a linked list, reverse the nodes of a linked list k at a time and return its modified list.k is a positive integer and is less than or equal to the length of the linked list. If the numbe">
+<meta name="twitter:title" content="教程类文章">
+<meta name="twitter:description" content="Docker Dockerizing a React AppReact 应用的 Docker 化。文中介绍了如何将 React 应用打包成生产环境可用的容器  Python 如何用 Python 实现一个简单的 JSON 解析器此文描述了使用 Python 如何实现一个简单的 JSON Parser，主要体现在词法分析 (lexical) 和语法分析 (syntactic) 两个步骤  前端CSS">
 <meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
 
 
@@ -94,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/wanderland/">
             
-                <img src="/wanderland/images/logo.svg" alt="Reverse Nodes in k-Group" height="28">
+                <img src="/wanderland/images/logo.svg" alt="教程类文章" height="28">
             
             </a>
         </div>
@@ -145,13 +145,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-02T06:18:29.000Z">2019-06-02</time>
+                <time class="level-item has-text-grey" datetime="2019-06-16T14:09:31.000Z">2019-06-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 312 words)
+                    a minute read (About 204 words)
                 </span>
                 
                 
@@ -160,22 +164,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Reverse Nodes in k-Group
+                教程类文章
             
         </h1>
         <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list, reverse the nodes of a linked list <em>k</em> at a time and return its modified list.<br><em>k</em> is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of <em>k</em> then left-out nodes in the end should remain as it is.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
-<p><strong>Note</strong>:</p>
-<ul>
-<li><p>Only constant extra memory is allowed.</p>
-</li>
-<li><p>You may not alter the values in the list’s nodes, only nodes itself may be changed.   </p>
-</li>
+            <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><ul>
+<li><a href="https://mherman.org/blog/dockerizing-a-react-app/" target="_blank" rel="noopener">Dockerizing a React App</a><br>React 应用的 Docker 化。文中介绍了如何将 React 应用打包成生产环境可用的容器</li>
 </ul>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>We can use the solution in <a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="noopener">Reverse Linked List</a> to reverse each group of the list. And then connect the <em>tail</em> of previous reversed part with the <em>head</em> of the next reversed part.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Tuple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse_k_group</span><span class="hljs-params">(head, k)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Inside each call stack:</span></span><br><span class="line"><span class="hljs-string">    - try to iterate k times to check if there are enough k nodes to reverse</span></span><br><span class="line"><span class="hljs-string">    - reverse k nodes starting from the head of current group</span></span><br><span class="line"><span class="hljs-string">    - connect the head (which is the tail after reversed) of the current group with the head of the next reversed k-node group</span></span><br><span class="line"><span class="hljs-string">    - return the head of current reversed group</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    count, curr = <span class="hljs-number">0</span>, head</span><br><span class="line">    <span class="hljs-keyword">while</span> count &lt; k <span class="hljs-keyword">and</span> curr:</span><br><span class="line">        curr = curr.next</span><br><span class="line">        count += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> count &lt; k:</span><br><span class="line">        <span class="hljs-keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    prev, nxt_head = reverse(head, k)</span><br><span class="line"></span><br><span class="line">    head.next = reverse_k_group(nxt_head, k)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse</span><span class="hljs-params">(head: ListNode, k: int)</span> -&gt; Tuple[ListNode, ListNode]:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Reverse a single group of nodes</span></span><br><span class="line"><span class="hljs-string">    For example: k = 3</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Before:</span></span><br><span class="line"><span class="hljs-string">    prev curr</span></span><br><span class="line"><span class="hljs-string">    |    |</span></span><br><span class="line"><span class="hljs-string">         1 -&gt; 2 -&gt; 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    After:</span></span><br><span class="line"><span class="hljs-string">              prev curr</span></span><br><span class="line"><span class="hljs-string">              |    |</span></span><br><span class="line"><span class="hljs-string">    1 &lt;- 2 &lt;- 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    prev, curr = <span class="hljs-keyword">None</span>, head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(count):</span><br><span class="line">        tmp = curr.next</span><br><span class="line">        curr.next = prev</span><br><span class="line">        prev = curr</span><br><span class="line">        curr = tmp</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev, curr</span><br></pre></td></tr></table></figure>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><ul>
+<li><a href="http://notes.eatonphil.com/writing-a-simple-json-parser.html" target="_blank" rel="noopener">如何用 Python 实现一个简单的 JSON 解析器</a><br>此文描述了使用 Python 如何实现一个简单的 JSON Parser，主要体现在词法分析 (lexical) 和语法分析 (syntactic) 两个步骤</li>
+</ul>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li><a href="https://habr.com/en/company/yandex/blog/450032/" target="_blank" rel="noopener">如何编写深色主题的 CSS</a><br>本文介绍了 Yandex Mail 团队如何使用 CSS 代码实现 APP 上的深色主题</li>
+</ul>
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><ul>
+<li><a href="https://www.freecodecamp.org/news/fundamental-design-principles-for-non-designers-ad34c30caa7/" target="_blank" rel="noopener">非设计师需要知道的设计原则</a><br>本文介绍了四个简单基本的设计原则给非设计人员</li>
+</ul>
 
         </div>
         
@@ -183,7 +187,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>, <a class="has-link-grey -link" href="/wanderland/tags/Recursion/">Recursion</a>
+                    <a class="has-link-grey -link" href="/wanderland/tags/Tutorial/">Tutorial</a>
                 </div>
             </div>
         </div>
@@ -200,17 +204,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/wanderland/2019/06/02/reverse-linked-list/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Reverse Linked List</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/06/02/articles/tools/">
-                <span class="level-item">一些有用的工具以及资源</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/06/02/reverse-linked-list/">
+                <span class="level-item">Reverse Linked List</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1122,7 +1119,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/wanderland/">
                 
-                    <img src="/wanderland/images/logo.svg" alt="Reverse Nodes in k-Group" height="28">
+                    <img src="/wanderland/images/logo.svg" alt="教程类文章" height="28">
                 
                 </a>
                 <p class="is-size-7">
