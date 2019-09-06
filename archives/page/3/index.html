@@ -2,24 +2,19 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Merge k Sorted Lists - WanderLand</title>
+<title>Archivos - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="ProblemMerge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.    Example: 1234567Input:[    1-&amp;gt;4-&amp;gt;5,    1-&amp;gt;3-&amp;gt;4,    2-&amp;gt;6]Output: 1-&amp;gt;1-&amp;gt;">
-<meta name="keywords" content="LeetCode,Linked List,Sentinel,Divide and Conquer,Heap">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Merge k Sorted Lists">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/05/29/merge-k-lists/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="WanderLand">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/archives/page/3/index.html">
 <meta property="og:site_name" content="WanderLand">
-<meta property="og:description" content="ProblemMerge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.    Example: 1234567Input:[    1-&amp;gt;4-&amp;gt;5,    1-&amp;gt;3-&amp;gt;4,    2-&amp;gt;6]Output: 1-&amp;gt;1-&amp;gt;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
-<meta property="og:updated_time" content="2019-05-30T15:17:52.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Merge k Sorted Lists">
-<meta name="twitter:description" content="ProblemMerge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.    Example: 1234567Input:[    1-&amp;gt;4-&amp;gt;5,    1-&amp;gt;3-&amp;gt;4,    2-&amp;gt;6]Output: 1-&amp;gt;1-&amp;gt;">
+<meta name="twitter:title" content="WanderLand">
 <meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
 
 
@@ -94,7 +89,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/wanderland/">
             
-                <img src="/wanderland/images/logo.svg" alt="Merge k Sorted Lists" height="28">
+                <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
             
             </a>
         </div>
@@ -139,87 +134,56 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="tag is-link">
+        2018
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
+                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-12-29T12:46:25.000Z">2018-12-29</time>
+                        <a href="/wanderland/2018/12/29/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
+        </div>
+    </div>
+</div>
+
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 166 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                Merge k Sorted Lists
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Merge <em>k</em> sorted linked lists and return it as one sorted list. Analyze and describe its complexity.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">    1-&gt;4-&gt;5,</span><br><span class="line">    1-&gt;3-&gt;4,</span><br><span class="line">    2-&gt;6</span><br><span class="line">]</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>This is a perfect case where heap data structure applies. We can construct a mininum heap at the beginning, and put new node into the heap after retrieving the minimum node each time.   </p>
-<p><strong>Note</strong></p>
-<ul>
-<li>Pyhton 3 has different implementation in PriorityQueue module. Dealing with tasks with same priority, we have to put some element to keep the stability. I use timestamp in here.   </li>
-</ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> queue <span class="hljs-keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_k_lists</span><span class="hljs-params">(lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">    q = PriorityQueue()</span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> lists:</span><br><span class="line">        <span class="hljs-keyword">if</span> l:</span><br><span class="line">            q.put((l.val, time.time(), l))</span><br><span class="line"></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> q.empty():</span><br><span class="line">        val, _, node = q.get()</span><br><span class="line">        curr.next = node</span><br><span class="line">        curr = curr.next</span><br><span class="line">        node = node.next</span><br><span class="line">        <span class="hljs-keyword">if</span> node:</span><br><span class="line">            q.put((node.val, time.time(), node))</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
 
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/wanderland/tags/Divide-and-Conquer/">Divide and Conquer</a>, <a class="has-link-grey -link" href="/wanderland/tags/Heap/">Heap</a>, <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>, <a class="has-link-grey -link" href="/wanderland/tags/Sentinel/">Sentinel</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
+    
 <div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/wanderland/2019/05/30/remove-nth-node-from-end/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Remove Nth Node From End of List</span>
-            </a>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/archives/page/2/">Anterior</a>
         </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/05/23/add-two-numbers/">
-                <span class="level-item">Add Two Numbers</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/archives/page/4/">Siguiente</a>
         </div>
-        
-    </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/archives/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/archives/page/2/">2</a></li>
+            
+            <li><a class="pagination-link is-current" href="/wanderland/archives/page/3/">3</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
 </div>
                 
 
@@ -1192,7 +1156,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/wanderland/">
                 
-                    <img src="/wanderland/images/logo.svg" alt="Merge k Sorted Lists" height="28">
+                    <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
                 
                 </a>
                 <p class="is-size-7">
