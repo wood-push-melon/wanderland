@@ -2,19 +2,24 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Tag: Divide and Conquer - WanderLand</title>
+<title>Rotate List - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="WanderLand">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/tags/Divide-and-Conquer/index.html">
+    <meta name="description" content="ProblemGiven a linked list, rotate the list to the right by k places, where k is non-negative. Example 1: 12345Input: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2Output: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NUL">
+<meta name="keywords" content="LeetCode,Two Pointers,Linked List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rotate List">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/09/08/leetcode/rotate-list/index.html">
 <meta property="og:site_name" content="WanderLand">
+<meta property="og:description" content="ProblemGiven a linked list, rotate the list to the right by k places, where k is non-negative. Example 1: 12345Input: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2Output: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NUL">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
+<meta property="og:updated_time" content="2019-09-08T15:03:35.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WanderLand">
+<meta name="twitter:title" content="Rotate List">
+<meta name="twitter:description" content="ProblemGiven a linked list, rotate the list to the right by k places, where k is non-negative. Example 1: 12345Input: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2Output: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NUL">
 <meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
 
 
@@ -89,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/wanderland/">
             
-                <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+                <img src="/wanderland/images/logo.svg" alt="Rotate List" height="28">
             
             </a>
         </div>
@@ -135,33 +140,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/wanderland/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Divide and Conquer</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-09-08T14:25:28.000Z">2019-09-08</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 166 words)
+                    a minute read (About 181 words)
                 </span>
                 
                 
@@ -170,20 +160,27 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/05/29/merge-k-lists/">Merge k Sorted Lists</a>
+                Rotate List
             
         </h1>
         <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Merge <em>k</em> sorted linked lists and return it as one sorted list. Analyze and describe its complexity.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">    1-&gt;4-&gt;5,</span><br><span class="line">    1-&gt;3-&gt;4,</span><br><span class="line">    2-&gt;6</span><br><span class="line">]</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>This is a perfect case where heap data structure applies. We can construct a mininum heap at the beginning, and put new node into the heap after retrieving the minimum node each time.   </p>
-<p><strong>Note</strong></p>
-<ul>
-<li>Pyhton 3 has different implementation in PriorityQueue module. Dealing with tasks with same priority, we have to put some element to keep the stability. I use timestamp in here.   </li>
-</ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> queue <span class="hljs-keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_k_lists</span><span class="hljs-params">(lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">    q = PriorityQueue()</span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> lists:</span><br><span class="line">        <span class="hljs-keyword">if</span> l:</span><br><span class="line">            q.put((l.val, time.time(), l))</span><br><span class="line"></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> q.empty():</span><br><span class="line">        val, _, node = q.get()</span><br><span class="line">        curr.next = node</span><br><span class="line">        curr = curr.next</span><br><span class="line">        node = node.next</span><br><span class="line">        <span class="hljs-keyword">if</span> node:</span><br><span class="line">            q.put((node.val, time.time(), node))</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/rotate-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list, rotate the list to the right by <em>k</em> places, where <em>k</em> is non-negative.</p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2</span><br><span class="line">Output: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</span><br><span class="line">Explanation:</span><br><span class="line">rotate 1 steps to the right: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL</span><br><span class="line">rotate 2 steps to the right: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: 0-&gt;1-&gt;2-&gt;NULL, k = 4</span><br><span class="line">Output: 2-&gt;0-&gt;1-&gt;NULL</span><br><span class="line">Explanation:</span><br><span class="line">rotate 1 steps to the right: 2-&gt;0-&gt;1-&gt;NULL</span><br><span class="line">rotate 2 steps to the right: 1-&gt;2-&gt;0-&gt;NULL</span><br><span class="line">rotate 3 steps to the right: 0-&gt;1-&gt;2-&gt;NULL</span><br><span class="line">rotate 4 steps to the right: 2-&gt;0-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The key to solve this problem is making a <strong>cyclic</strong> linked list by connecting the tail with the head, and then searching for the new head node after the rotate happens. The code is not complex and relatively self explanatory.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rotate_right</span><span class="hljs-params">(head: ListNode, k: int)</span> -&gt; ListNode:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    curr, length = head, <span class="hljs-number">1</span></span><br><span class="line">    <span class="hljs-keyword">while</span> curr.next:</span><br><span class="line">        curr = curr.next</span><br><span class="line">        length += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    curr.next = head <span class="hljs-comment"># make a loop</span></span><br><span class="line"></span><br><span class="line">    tail = head</span><br><span class="line">    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(length - k % length - <span class="hljs-number">1</span>):</span><br><span class="line">        tail = tail.next</span><br><span class="line"></span><br><span class="line">    res = tail.next <span class="hljs-comment"># the returned head node</span></span><br><span class="line">    tail.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>, <a class="has-link-grey -link" href="/wanderland/tags/Two-Pointers/">Two Pointers</a>
+                </div>
+            </div>
         </div>
         
         
@@ -195,7 +192,19 @@
 
 
 
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/08/26/articles/github/">
+                <span class="level-item">Github 上值得关注的资源</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1192,7 +1201,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/wanderland/">
                 
-                    <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+                    <img src="/wanderland/images/logo.svg" alt="Rotate List" height="28">
                 
                 </a>
                 <p class="is-size-7">
