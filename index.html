@@ -141,6 +141,62 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-24T14:54:56.000Z">2019-10-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 339 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/">Copy List with Random Pointer</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or <code>null</code>. Return a deep copy of the list.   </p>
+<p><strong>Note:</strong><br>You must return the <strong>copy of the given head</strong> as a reference to the cloned list.   </p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>This problem truely did give me headache. The difficulty comes from the additional <code>random</code> pointer. It is very straightforward if only the <code>next</code> pointer exists. We can just simply clone the original linked list by iterating it. But this time we have another <code>random</code> pointer.   </p>
+<p>The key to solve this problem is to build up the mapping between the original list and cloned list, and hash table would be the perfect data structure.   </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping: &#123;original_node: cloned_node&#125;</span><br></pre></td></tr></table></figure>
+<p>Obviously we need to iterate the linked list twice. We have to build up the mapping in the first pass, and weave the cloned list in the second pass.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val, next, random)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">        self.random = random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">copy_random_list</span><span class="hljs-params">(head: Node)</span> -&gt; Node:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    mapping = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr] = <span class="hljs-literal">None</span>(curr.val, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>)</span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr].next = mapping.get(curr.next)     <span class="hljs-comment"># curr_cloned.next = (curr.next)_cloned</span></span><br><span class="line">        mapping[curr].random = mapping.get(curr.random) <span class="hljs-comment"># curr_cloned.random = (curr.random)_cloned</span></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> mapping[head] <span class="hljs-comment"># head_cloned</span></span><br></pre></td></tr></table></figure>
+<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow-up"></a><strong>Follow-up</strong></h3><p>This solution uses additional space to maintain the mapping relationship. There is another solution which claims that it only uses <code>O(1)</code> space. The bottom line is still keeping the mapping, but it uses another form to do that: it interleaves the original and cloned lists.   </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 1 -&gt; 1&apos; -&gt; 2 -&gt; 2&apos; -&gt; null</span><br><span class="line"> |</span><br><span class="line">curr</span><br></pre></td></tr></table></figure>
+<p>So we can use the following formula to make the random pointers of the cloned nodes correct.   </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curr.next.random = curr.random.next</span><br></pre></td></tr></table></figure>
+<p>But at the end, we need to pick up the cloned nodes and reconnect their <code>next</code> pointers.   </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-10-17T00:07:15.000Z">2019-10-17</time>
                 
                 <div class="level-item">
@@ -569,7 +625,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 168 words)
+                    a minute read (About 192 words)
                 </span>
                 
                 
@@ -600,108 +656,8 @@
 <h1 id="教学"><a href="#教学" class="headerlink" title="教学"></a>教学</h1><ul>
 <li><a href="https://github.com/lujun9972/lujun9972.github.com" target="_blank" rel="noopener">GitHub 上某人总结的各种技巧和经验</a><br>涉及 Emacs，Linux，各种编程语言</li>
 </ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-16T14:09:31.000Z">2019-06-16</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 608 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/06/16/articles/tutorials/">教程</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h1><ul>
-<li><p><a href="https://www.interviewcake.com/data-structures-reference" target="_blank" rel="noopener">Data Structures Reference</a></p>
-</li>
-<li><p><a href="https://adrianmejia.com/categories/coding/data-structures-and-algorithms-dsa/" target="_blank" rel="noopener">Data Structures and Algorithms</a></p>
-</li>
-<li><p><a href="https://blog.paulhankin.net/fibonacci/" target="_blank" rel="noopener">An Integer Formula for Fibonacci Numbers</a></p>
-</li>
-</ul>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><ul>
-<li><p><a href="https://mherman.org/blog/dockerizing-a-react-app/" target="_blank" rel="noopener">Dockerizing a React App</a><br>React 应用的 Docker 化。文中介绍了如何将 React 应用打包成生产环境可用的容器</p>
-</li>
-<li><p><a href="https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/" target="_blank" rel="noopener">Intro Guide to Dockerfile Best Practices</a><br>介绍编写 Dockerfile 的最佳实践, 节省构建时间、image 大小，增加可维护性、安全性和可重复性</p>
-</li>
-</ul>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><ul>
-<li><p><a href="http://notes.eatonphil.com/writing-a-simple-json-parser.html" target="_blank" rel="noopener">如何用 Python 实现一个简单的 JSON 解析器</a><br>此文描述了使用 Python 如何实现一个简单的 JSON Parser，主要体现在词法分析 (lexical) 和语法分析 (syntactic) 两个步骤</p>
-</li>
-<li><p><a href="https://python-patterns.guide/?hmsr=pycourses.com&amp;utm_source=pycourses.com&amp;utm_medium=pycourses.com" target="_blank" rel="noopener">Python Pattens</a><br>Python 语言中的设计模式</p>
-</li>
-</ul>
-<h1 id="Golang"><a href="#Golang" class="headerlink" title="Golang"></a>Golang</h1><ul>
-<li><p><a href="https://milapneupane.com.np/2019/07/06/learning-golang-from-zero-to-hero/" target="_blank" rel="noopener">Learning Golang from zero to hero</a></p>
-</li>
-<li><p><a href="https://go101.org/article/101.html" target="_blank" rel="noopener">Go 101</a></p>
-</li>
-</ul>
-<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ul>
-<li><a href="https://webdesign.tutsplus.com/tutorials/how-to-use-svg-patterns-as-backgrounds--cms-31507" target="_blank" rel="noopener">How to Use SVG Patterns as Backgrounds</a><br>教你如何手写一个 SVG 文件作为网页的背景图案</li>
-</ul>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
-<li><p><a href="https://habr.com/en/company/yandex/blog/450032/" target="_blank" rel="noopener">如何编写深色主题的 CSS</a><br>本文介绍了 Yandex Mail 团队如何使用 CSS 代码实现 APP 上的深色主题</p>
-</li>
-<li><p><a href="https://css-tricks.com/simple-social-sharing-links/" target="_blank" rel="noopener">如何写网页的社交媒体分享功能</a></p>
-</li>
-<li><p><a href="https://yuanchuan.dev/2018/05/06/unicode-patterns.html" target="_blank" rel="noopener">Unicode 字符与 CSS 背景</a><br>本文介绍了使用 Unicode 字符来做 CSS 背景。<a href="https://css-tricks.com/more-unicode-patterns/" target="_blank" rel="noopener">续篇</a></p>
-</li>
-</ul>
-<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><ul>
-<li><a href="https://www.freecodecamp.org/news/fundamental-design-principles-for-non-designers-ad34c30caa7/" target="_blank" rel="noopener">非设计师需要知道的设计原则</a><br>本文介绍了四个简单基本的设计原则给非设计人员</li>
-</ul>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><ul>
-<li><a href="https://itnext.io/javascript-e2e-ui-testing-or-how-to-brake-up-with-selenium-and-move-on-f991c142079a" target="_blank" rel="noopener">testcafe 教程</a><br>本文介绍了前端 UI 测试框架 testcafe</li>
-</ul>
-<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><ul>
-<li><p><a href="https://engineering.videoblocks.com/web-architecture-101-a3224e126947" target="_blank" rel="noopener">网站架构101</a><br>介绍大型网站架构的基本知识</p>
-</li>
-<li><p><a href="https://medium.com/@PaulDJohnston/serverless-best-practices-b3c97d551535" target="_blank" rel="noopener">Serverless Best Practices</a><br>Serverless 架构应该注意的问题</p>
-</li>
-</ul>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
-<li><p><a href="https://milapneupane.com.np/2019/07/06/how-does-a-cpu-work/" target="_blank" rel="noopener">How does a CPU work</a></p>
-</li>
-<li><p><a href="https://letsencrypt.org/docs/certificates-for-localhost/" target="_blank" rel="noopener">Certificates for localhost</a><br>本文介绍了如何为 localhost 生成证书</p>
-</li>
-<li><p><a href="https://github.com/mattm/sql-style-guide#guidelines" target="_blank" rel="noopener">SQL Style Guide</a><br>SQL 的风格指南</p>
-</li>
-<li><p><a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes" target="_blank" rel="noopener">Learn LaTeX in 30 mins</a><br>LaTeX 的快速入门教程</p>
-</li>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ul>
+<li><a href="https://github.com/viraptor/reverse-interview" target="_blank" rel="noopener">reverse-interview</a><br>收集在面试中反问面试官的问题</li>
 </ul>
 
         </div>
@@ -723,10 +679,10 @@
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/0/">Previous</a>
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/0/">Anterior</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/2/">Next</a>
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/2/">Siguiente</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -779,17 +735,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        30
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         2
@@ -799,7 +755,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         21
@@ -809,7 +765,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
-                Follow</a>
+                SEGUIR</a>
         </div>
         
         
@@ -951,7 +907,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -968,7 +924,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">13</span>
             </span>
         </a></li>
             </ul>
@@ -980,9 +936,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nube de etiquetas
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 14px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 12px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 14px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 13.33px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.33px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 11.67px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16.67px;">Two Pointers</a>
     </div>
 </div>
 
@@ -994,8 +950,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Copy List with Random Pointer">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-24T14:54:56.000Z">2019-10-24</time></div>
+                    <a href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/" class="has-link-black-ter is-size-6">Copy List with Random Pointer</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1073,25 +1048,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/09/11/leetcode/partition-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Partition List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T13:50:55.000Z">2019-09-11</time></div>
-                    <a href="/wanderland/2019/09/11/leetcode/partition-list/" class="has-link-black-ter is-size-6">Partition List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1100,7 +1056,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1110,7 +1066,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1212,7 +1168,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1275,7 +1231,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1296,14 +1252,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">22</span>
+                        <span class="tag is-grey">23</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1383,8 +1339,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Recientes
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Copy List with Random Pointer">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-24T14:54:56.000Z">2019-10-24</time></div>
+                    <a href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/" class="has-link-black-ter is-size-6">Copy List with Random Pointer</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1462,25 +1437,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/09/11/leetcode/partition-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Partition List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T13:50:55.000Z">2019-09-11</time></div>
-                    <a href="/wanderland/2019/09/11/leetcode/partition-list/" class="has-link-black-ter is-size-6">Partition List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1489,7 +1445,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -1499,7 +1455,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1601,7 +1557,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1664,7 +1620,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1685,14 +1641,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">22</span>
+                        <span class="tag is-grey">23</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">14</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1927,10 +1883,10 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Entradas',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
                 UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/wanderland/content.json',
