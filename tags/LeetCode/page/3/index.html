@@ -151,6 +151,54 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 251 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/20/4sum/">4 Sum</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/4sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, are there elements <em>a, b, c,</em> and <em>d</em> in <code>nums</code> such that <em>a + b +c + d</em> = <code>target</code>? Find all unique quadruplets in the array which gives the sum of <code>target</code>.   </p>
+<p>Note:</p>
+<p>The solution set must not contain duplicate quadruplets.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [1, 0, -1, 0, -2, 2], and target = 0</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The solution to <em>k</em>-sum can always be decomopsed to <em>2</em>-sum problem with <code>k-2</code> loops wrapping. With this strategic template in mind, we can boil down <em>4</em>-sum problem to the following implementation.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">four_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[List[int]]':</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">4</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    nums.sort()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-3</span>):</span><br><span class="line">        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] == nums[i<span class="hljs-number">-1</span>]:</span><br><span class="line">            <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> j &gt; i+<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> nums[j] == nums[j<span class="hljs-number">-1</span>]:</span><br><span class="line">                <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">            l, r = j + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">                s = nums[i] + nums[j] + nums[l] + nums[r]</span><br><span class="line">                <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">                    res.append([nums[i], nums[j], nums[l], nums[r])</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">else</span>:</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>NOTE</strong><br><em>k</em>-sum problem can be implemented by using <strong>recursion</strong>. We will add such implementation later.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-02-18T03:37:28.000Z">2019-02-18</time>
                 
                 
@@ -463,7 +511,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -649,7 +697,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -663,7 +711,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 13.33px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.33px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 11.67px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 16.67px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
     </div>
 </div>
 
@@ -677,6 +725,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/11/17/leetcode/sort-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Sort List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T12:07:08.000Z">2019-11-17</time></div>
+                    <a href="/wanderland/2019/11/17/leetcode/sort-list/" class="has-link-black-ter is-size-6">Sort List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -754,25 +821,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/10/16/leetcode/linked-list-cycle/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Cycle">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T13:34:22.000Z">2019-10-16</time></div>
-                    <a href="/wanderland/2019/10/16/leetcode/linked-list-cycle/" class="has-link-black-ter is-size-6">Linked List Cycle</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -791,7 +839,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -995,14 +1043,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">25</span>
+                        <span class="tag is-grey">26</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
@@ -1030,7 +1078,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1094,6 +1142,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/11/17/leetcode/sort-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Sort List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T12:07:08.000Z">2019-11-17</time></div>
+                    <a href="/wanderland/2019/11/17/leetcode/sort-list/" class="has-link-black-ter is-size-6">Sort List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/02/leetcode/insertion-sort-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Insertion Sort List">
@@ -1168,25 +1235,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/10/16/leetcode/linked-list-cycle/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Cycle">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T13:34:22.000Z">2019-10-16</time></div>
-                    <a href="/wanderland/2019/10/16/leetcode/linked-list-cycle/" class="has-link-black-ter is-size-6">Linked List Cycle</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1205,7 +1253,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1409,14 +1457,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">25</span>
+                        <span class="tag is-grey">26</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">17</span>
+                        <span class="tag is-grey">18</span>
                     </a>
                 </div>
                 
@@ -1444,7 +1492,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
