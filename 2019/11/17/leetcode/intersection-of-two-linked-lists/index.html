@@ -2,24 +2,24 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Partition List - WanderLand</title>
+<title>Intersection of Two Linked Lists - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="ProblemGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.    You should preserve the original order of the nodes in each of t">
-<meta name="keywords" content="LeetCode,Two Pointers,Linked List">
+    <meta name="description" content="ProblemWrite a program to find the node at which the intersection of two singly linked lists begins.    Notes:  If the two linked lists have no intersection at all, return null. The linked lists must">
+<meta name="keywords" content="LeetCode,Linked List">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Partition List">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/09/11/leetcode/partition-list/index.html">
+<meta property="og:title" content="Intersection of Two Linked Lists">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/11/17/leetcode/intersection-of-two-linked-lists/index.html">
 <meta property="og:site_name" content="WanderLand">
-<meta property="og:description" content="ProblemGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.    You should preserve the original order of the nodes in each of t">
+<meta property="og:description" content="ProblemWrite a program to find the node at which the intersection of two singly linked lists begins.    Notes:  If the two linked lists have no intersection at all, return null. The linked lists must">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-11T14:38:06.201Z">
+<meta property="og:updated_time" content="2019-11-17T16:06:12.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Partition List">
-<meta name="twitter:description" content="ProblemGiven a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.    You should preserve the original order of the nodes in each of t">
+<meta name="twitter:title" content="Intersection of Two Linked Lists">
+<meta name="twitter:description" content="ProblemWrite a program to find the node at which the intersection of two singly linked lists begins.    Notes:  If the two linked lists have no intersection at all, return null. The linked lists must">
 <meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
 
 
@@ -94,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/wanderland/">
             
-                <img src="/wanderland/images/logo.svg" alt="Partition List" height="28">
+                <img src="/wanderland/images/logo.svg" alt="Intersection of Two Linked Lists" height="28">
             
             </a>
         </div>
@@ -145,7 +145,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T13:50:55.000Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-11-17T15:16:21.000Z">2019-11-17</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 178 words)
+                    a minute read (About 205 words)
                 </span>
                 
                 
@@ -164,17 +164,20 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Partition List
+                Intersection of Two Linked Lists
             
         </h1>
         <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/partition-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list and a value <em>x</em>, partition it such that all nodes less than <em>x</em> come before nodes greater than or equal to <em>x</em>.   </p>
-<p>You should preserve the original order of the nodes in each of the two partitions.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: head = 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x = 3</span><br><span class="line">Output: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The strategy to solve this problem is kind of straightforward: we can start with <strong>two pointers</strong>, one is going to knit all nodes less than <em>x</em> and another with the rest. We finish the problem by connecting the two lists together.   </p>
-<p>The time complexity is <code>O(n)</code> and space complexity is <code>O(1)</code>.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">partition_list</span><span class="hljs-params">(head: ListNode, x: int)</span> -&gt; ListNode:</span></span><br><span class="line">    before_dummy = before = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    after_dummy = after = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> head:</span><br><span class="line">        <span class="hljs-keyword">if</span> head.val &lt; x:</span><br><span class="line">            before.next = head</span><br><span class="line">            before = before.next</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            after.next = head</span><br><span class="line">            after = after.next</span><br><span class="line">        head = head.next</span><br><span class="line"></span><br><span class="line">    after.next = <span class="hljs-literal">None</span> <span class="hljs-comment"># DON'T forget to cut off the tail's next</span></span><br><span class="line">    before.next = after_dummy.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> before.dummy</span><br></pre></td></tr></table></figure>
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Write a program to find the node at which the intersection of two singly linked lists begins.   </p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>If the two linked lists have no intersection at all, return <code>null</code>.</li>
+<li>The linked lists must retain their original structure after the function returns.</li>
+<li>You may assume there are no cycles anywhere in the entire linked structure.</li>
+<li>Your code should preferably run in O(n) time and use only O(1) memory.</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The trick to solve this problem is to redirect the pointer to the head of the other list when reaching the end. If the two lists are not equal in length, two pointers will definitely meet at the intersection node after the redirects. I think the code will explain the solution better.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_intersection_node</span><span class="hljs-params">(head_a: ListNode, head_b: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> head_a <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> head_b <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    curr_a, curr_b = head_a, head_b</span><br><span class="line">    <span class="hljs-keyword">while</span> curr_a != curr_b:</span><br><span class="line">        curr_a = curr_a.next <span class="hljs-keyword">if</span> curr_a <span class="hljs-keyword">else</span> head_b</span><br><span class="line">        curr_b = curr_b.next <span class="hljs-keyword">if</span> curr_b <span class="hljs-keyword">else</span> head_a</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> curr_a</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -182,7 +185,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>, <a class="has-link-grey -link" href="/wanderland/tags/Two-Pointers/">Two Pointers</a>
+                    <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>
                 </div>
             </div>
         </div>
@@ -199,17 +202,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/wanderland/2019/09/12/leetcode/reverse-linked-list-ii/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Reverse Linked List II</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/09/10/leetcode/remove-duplicates-from-sorted-list-ii/">
-                <span class="level-item">Remove Duplicates from Sorted List II</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/11/17/leetcode/sort-list/">
+                <span class="level-item">Sort List</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1298,7 +1294,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/wanderland/">
                 
-                    <img src="/wanderland/images/logo.svg" alt="Partition List" height="28">
+                    <img src="/wanderland/images/logo.svg" alt="Intersection of Two Linked Lists" height="28">
                 
                 </a>
                 <p class="is-size-7">
