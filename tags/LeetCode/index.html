@@ -151,6 +151,59 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 188 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/">Palindrome Linked List</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a singly linked list, determine if it is a palindrome.   </p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;2-&gt;1</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p>Follow up:<br>Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?   </p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The quick thought should be <strong>reverse half of the list</strong>. Obviously it is more efficient to reverse the first half while traversing the list to find the middle node. And be careful that we need to deal with the case of odd-length list.   </p>
+<p>And it is noticeable that we can do one-line reverse with the help of sequence unpacking feature in Python.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_palindrome</span><span class="hljs-params">(head: ListNode)</span> -&gt; bool:</span></span><br><span class="line">    prev, slow, fast = <span class="hljs-literal">None</span>, head, head</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">while</span> fast <span class="hljs-keyword">and</span> fast.next:</span><br><span class="line">        fast = fast.next.next</span><br><span class="line"></span><br><span class="line">        tmp = slow.next</span><br><span class="line">        slow.next = prev</span><br><span class="line">        prev = slow</span><br><span class="line">        slow.next = tmp</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># One-line reverse</span></span><br><span class="line">        <span class="hljs-comment"># prev, prev.next, slow = slow, prev, slow.next</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># Odd-length case</span></span><br><span class="line">    <span class="hljs-keyword">if</span> fast <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        slow = slow.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> prev <span class="hljs-keyword">and</span> prev.val == slow.val:</span><br><span class="line">        prev, slow = prev.next, slow.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> prev</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-18T14:29:42.000Z">2019-11-18</time>
                 
                 <div class="level-item">
@@ -643,56 +696,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-12T12:55:22.000Z">2019-09-12</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 196 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/09/12/leetcode/reverse-linked-list-ii/">Reverse Linked List II</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Reverse a linked list from position <em>m</em> to <em>n</em>. Do it in one-pass.   </p>
-<p><strong>Note:</strong> 1 ≤ <em>m</em> ≤ <em>n</em> ≤ length of list.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2, n = 4</span><br><span class="line">Output: 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>To reverse part of the linked list, we need to reach the starting node in the reverse zone, and then do the regular reverse action. The last thing we need to do is connecting the intact part with the reversed section. The code clearly shows how.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse_between</span><span class="hljs-params">(head: ListNode, m: int, n: int)</span> -&gt; ListNode:</span></span><br><span class="line">    prev = dummy = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    dummy.next = head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, m):</span><br><span class="line">        prev = prev.next</span><br><span class="line"></span><br><span class="line">    m_prev = prev               <span class="hljs-comment"># the last node before the reverse zone</span></span><br><span class="line">    m_curr = n_curr = prev.next <span class="hljs-comment"># the first node in reverse zone</span></span><br><span class="line">    n_post = n_curr.next        <span class="hljs-comment"># the first node after the reverse zone</span></span><br><span class="line">    <span class="hljs-keyword">for</span> _ range(m, n):</span><br><span class="line">        temp = n_post.next</span><br><span class="line">        n_post.next = n_curr</span><br><span class="line">        n_curr = n_post</span><br><span class="line">        n_post = temp</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 1  -&gt;  2  &lt;-&gt;  3  &lt;-  4      5</span></span><br><span class="line">    <span class="hljs-comment"># |      |              |      |</span></span><br><span class="line">    <span class="hljs-comment"># m_prev m_curr      n_curr  n_post</span></span><br><span class="line">    m_prev = n_curr</span><br><span class="line">    m_curr.next = n_post</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummny.next</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -757,7 +760,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -943,7 +946,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">18</span>
+                <span class="level-item tag">19</span>
             </span>
         </a></li>
             </ul>
@@ -974,6 +977,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
@@ -1048,25 +1070,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reorder List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T03:26:45.000Z">2019-11-02</time></div>
-                    <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="has-link-black-ter is-size-6">Reorder List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1085,7 +1088,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1289,14 +1292,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">20</span>
+                        <span class="tag is-grey">21</span>
                     </a>
                 </div>
                 
@@ -1359,7 +1362,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
@@ -1388,6 +1391,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
@@ -1462,25 +1484,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reorder List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T03:26:45.000Z">2019-11-02</time></div>
-                    <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="has-link-black-ter is-size-6">Reorder List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1499,7 +1502,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1703,14 +1706,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">20</span>
+                        <span class="tag is-grey">21</span>
                     </a>
                 </div>
                 
@@ -1773,7 +1776,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 

@@ -141,6 +141,57 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-16T15:17:07.000Z">2019-02-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 302 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/16/3sum/">3 Sum</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers, are there three elements <em>a, b, c</em> in <code>nums</code> such that <em>a + b + c</em> = 0 ? Find all unique triplets in the array which gives the sum of zero.   </p>
+<p>Note:   </p>
+<p>The solution set must not contain duplicate triplets.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 0, 1, 2, -1, -4],</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>Two pointers strategy comes to help again. We can first sort the input array, and then make use of the solution in <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener"><strong>2 sum with sorted input array</strong></a> to solve this <strong>3 sum</strong> problem when we fix the first element <em>a</em>.   </p>
+<p><strong>NOTE</strong>   </p>
+<ul>
+<li>The problem specifies that no duplicate driplets should appear in the result, so we have to take this in mind. To meet this requirement, moving left and right pointers should be more <em>aggressive</em>, like skipping next element with same value.   </li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">three_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>)</span> -&gt; 'List[List[int]]':</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">3</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    nums.sort() <span class="hljs-comment"># sort the input first</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">        <span class="hljs-comment"># no need to move on if the fixed element is greater than 0</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[i] &gt; <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># skip elements with same value</span></span><br><span class="line">        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] == nums[i<span class="hljs-number">-1</span>]:</span><br><span class="line">            <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">        l, r = i + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">            s = nums[i] + nums[l] + nums[r]</span><br><span class="line">            <span class="hljs-keyword">if</span> s == <span class="hljs-number">0</span>:</span><br><span class="line">                res.append([nums[i], nums[l], nums[r]])</span><br><span class="line">                l = increment(nums, l, r)</span><br><span class="line">                r = decrement(nums, l, r)</span><br><span class="line">            <span class="hljs-keyword">elif</span> s &lt; <span class="hljs-number">0</span>:</span><br><span class="line">                l = increment(nums, l, r)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># increment pointer by skipping same-value elements</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># decrement pointer by skipping same-value elements</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-02-14T05:57:28.000Z">2019-02-14</time>
                 
                 
@@ -461,7 +512,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        35
+                        36
                     </p>
                 </div>
             </div>
@@ -647,7 +698,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">18</span>
+                <span class="level-item tag">19</span>
             </span>
         </a></li>
             </ul>
@@ -678,6 +729,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
@@ -752,25 +822,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reorder List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T03:26:45.000Z">2019-11-02</time></div>
-                    <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="has-link-black-ter is-size-6">Reorder List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -789,7 +840,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -993,14 +1044,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">20</span>
+                        <span class="tag is-grey">21</span>
                     </a>
                 </div>
                 
@@ -1063,7 +1114,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
@@ -1092,6 +1143,25 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
@@ -1166,25 +1236,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Reorder List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T03:26:45.000Z">2019-11-02</time></div>
-                    <a href="/wanderland/2019/11/02/leetcode/reorder-list/" class="has-link-black-ter is-size-6">Reorder List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1203,7 +1254,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1407,14 +1458,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">28</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">20</span>
+                        <span class="tag is-grey">21</span>
                     </a>
                 </div>
                 
@@ -1477,7 +1528,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
                         <span class="tag">Two Pointers</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
