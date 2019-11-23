@@ -2,20 +2,24 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Categorias - WanderLand</title>
+<title>Delete Node in a Linked List - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="LeetCode,Array,Hash Table,Tree,Two Pointers,Binary Search,Linked List,Sentinel,Math,Divide and Conquer,Heap,Big Manipulation,Recursion,Algorithms,Sorting,Learn,Github,Tutorial,Article,Sort,Depth-first Search,Interleave,Tools">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WanderLand">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/categories/index.html">
+    <meta name="description" content="ProblemWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.    Example 1: 123Input: head = [4,5,1,9], node = 5Output: [4,1,9]Explanation: You ar">
+<meta name="keywords" content="LeetCode,Linked List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Delete Node in a Linked List">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/2019/11/23/leetcode/delete-node-in-a-linked-list/index.html">
 <meta property="og:site_name" content="WanderLand">
+<meta property="og:description" content="ProblemWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.    Example 1: 123Input: head = [4,5,1,9], node = 5Output: [4,1,9]Explanation: You ar">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
+<meta property="og:updated_time" content="2019-11-23T07:33:19.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WanderLand">
+<meta name="twitter:title" content="Delete Node in a Linked List">
+<meta name="twitter:description" content="ProblemWrite a function to delete a node (except the tail) in a singly linked list, given only access to that node.    Example 1: 123Input: head = [4,5,1,9], node = 5Output: [4,1,9]Explanation: You ar">
 <meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
 
 
@@ -90,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/wanderland/">
             
-                <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+                <img src="/wanderland/images/logo.svg" alt="Delete Node in a Linked List" height="28">
             
             </a>
         </div>
@@ -102,7 +106,7 @@
                 
                 <a class="navbar-item" href="/wanderland/archives">Archives</a>
                 
-                <a class="navbar-item is-active" href="/wanderland/categories">Categories</a>
+                <a class="navbar-item" href="/wanderland/categories">Categories</a>
                 
                 <a class="navbar-item" href="/wanderland/tags">Tags</a>
                 
@@ -135,35 +139,86 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Categorias
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/wanderland/categories/Collection/">
-            <span class="level-start">
-                <span class="level-item">Collection</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
-            <span class="level-start">
-                <span class="level-item">LeetCode</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">20</span>
-            </span>
-        </a></li>
-            </ul>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-23T07:26:34.000Z">2019-11-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 194 words)
+                </span>
+                
+                
+            </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Delete Node in a Linked List
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.   </p>
+<p>Example 1:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [4,5,1,9], node = 5</span><br><span class="line">Output: [4,1,9]</span><br><span class="line">Explanation: You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function.</span><br></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: head = [4,5,1,9], node = 1</span><br><span class="line">Output: [4,5,9]</span><br><span class="line">Explanation: You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The linked list will have at least two elements.</li>
+<li>All of the nodes’ values will be unique.</li>
+<li>The given node will not be the tail and it will always be a valid node of the linked list.</li>
+<li>Do not return anything from your function.</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>This problem is very similar to traditional node deletion in linked list except the fact that we are given the target node instead of the head. Although simple enough, it provides up another way to delete a node in linked list.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">delete_node</span><span class="hljs-params">(node: ListNode)</span>:</span></span><br><span class="line">    node.val = node.next.val</span><br><span class="line">    node.next = node.next.next</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/wanderland/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/wanderland/tags/Linked-List/">Linked List</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-</div></div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/">
+                <span class="level-item">Palindrome Linked List</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
                 
 
 
@@ -1243,7 +1298,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/wanderland/">
                 
-                    <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+                    <img src="/wanderland/images/logo.svg" alt="Delete Node in a Linked List" height="28">
                 
                 </a>
                 <p class="is-size-7">
