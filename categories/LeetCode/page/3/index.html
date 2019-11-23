@@ -2,14 +2,14 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Tag: Hash Table - WanderLand</title>
+<title>Category: LeetCode - WanderLand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="WanderLand">
-<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/tags/Hash-Table/index.html">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/categories/LeetCode/page/3/index.html">
 <meta property="og:site_name" content="WanderLand">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
@@ -138,8 +138,9 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/wanderland/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Hash Table</a></li>
+            <li><a href="/wanderland/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">LeetCode</a></li>
         </ul>
         </nav>
     </div>
@@ -151,7 +152,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-24T14:54:56.000Z">2019-10-24</time>
+                <time class="level-item has-text-grey" datetime="2019-05-29T15:27:43.000Z">2019-05-29</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
@@ -161,7 +162,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 339 words)
+                    a minute read (About 166 words)
                 </span>
                 
                 
@@ -170,167 +171,19 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/">Copy List with Random Pointer</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/05/29/merge-k-lists/">Merge k Sorted Lists</a>
             
         </h1>
         <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or <code>null</code>. Return a deep copy of the list.   </p>
-<p><strong>Note:</strong><br>You must return the <strong>copy of the given head</strong> as a reference to the cloned list.   </p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>This problem truely did give me headache. The difficulty comes from the additional <code>random</code> pointer. It is very straightforward if only the <code>next</code> pointer exists. We can just simply clone the original linked list by iterating it. But this time we have another <code>random</code> pointer.   </p>
-<p>The key to solve this problem is to build up the mapping between the original list and cloned list, and hash table would be the perfect data structure.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping: &#123;original_node: cloned_node&#125;</span><br></pre></td></tr></table></figure>
-<p>Obviously we need to iterate the linked list twice. We have to build up the mapping in the first pass, and weave the cloned list in the second pass.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val, next, random)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">        self.random = random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">copy_random_list</span><span class="hljs-params">(head: Node)</span> -&gt; Node:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    mapping = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr] = Node(curr.val, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>)</span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr].next = mapping.get(curr.next)     <span class="hljs-comment"># curr_cloned.next = (curr.next)_cloned</span></span><br><span class="line">        mapping[curr].random = mapping.get(curr.random) <span class="hljs-comment"># curr_cloned.random = (curr.random)_cloned</span></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> mapping[head] <span class="hljs-comment"># head_cloned</span></span><br></pre></td></tr></table></figure>
-<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow-up"></a><strong>Follow-up</strong></h3><p>This solution uses additional space to maintain the mapping relationship. There is another solution which claims that it only uses <code>O(1)</code> space. The bottom line is still keeping the mapping, but it uses another form to do that: it interleaves the original and cloned lists.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 1 -&gt; 1&apos; -&gt; 2 -&gt; 2&apos; -&gt; null</span><br><span class="line"> |</span><br><span class="line">curr</span><br></pre></td></tr></table></figure>
-<p>So we can use the following formula to make the random pointers of the cloned nodes correct.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curr.next.random = curr.random.next</span><br></pre></td></tr></table></figure>
-<p>But at the end, we need to pick up the cloned nodes and reconnect their <code>next</code> pointers.   </p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 251 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/20/4sum/">4 Sum</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/4sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, are there elements <em>a, b, c,</em> and <em>d</em> in <code>nums</code> such that <em>a + b +c + d</em> = <code>target</code>? Find all unique quadruplets in the array which gives the sum of <code>target</code>.   </p>
-<p>Note:</p>
-<p>The solution set must not contain duplicate quadruplets.   </p>
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Merge <em>k</em> sorted linked lists and return it as one sorted list. Analyze and describe its complexity.   </p>
 <p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [1, 0, -1, 0, -2, 2], and target = 0</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The solution to <em>k</em>-sum can always be decomopsed to <em>2</em>-sum problem with <code>k-2</code> loops wrapping. With this strategic template in mind, we can boil down <em>4</em>-sum problem to the following implementation.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">four_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[List[int]]':</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">4</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    nums.sort()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-3</span>):</span><br><span class="line">        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] == nums[i<span class="hljs-number">-1</span>]:</span><br><span class="line">            <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> j &gt; i+<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> nums[j] == nums[j<span class="hljs-number">-1</span>]:</span><br><span class="line">                <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">            l, r = j + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">                s = nums[i] + nums[j] + nums[l] + nums[r]</span><br><span class="line">                <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">                    res.append([nums[i], nums[j], nums[l], nums[r])</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">else</span>:</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
-<p><strong>NOTE</strong><br><em>k</em>-sum problem can be implemented by using <strong>recursion</strong>. We will add such implementation later.</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-12T06:56:31.000Z">2019-02-12</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 149 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/12/2sum-bst/">Two Sum IV - Input is a BST</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.   </p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 9</span><br><span class="line"></span><br><span class="line">Output: True</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 28</span><br><span class="line"></span><br><span class="line">Output: False</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The solution to this problem is sort of similar to the one in the original <strong>Two Sum</strong> problem.<br>The only difference is to traversing a <strong>Tree</strong> instead of an <strong>Array</strong>. We use <strong>BFS</strong> to iterate the whole structure, but <strong>DFS</strong> is completely a feasible alternative too.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findTarget</span><span class="hljs-params">(root: <span class="hljs-string">'TreeNode'</span>, k: <span class="hljs-string">'int'</span>)</span> -&gt; 'bool':</span></span><br><span class="line">    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br><span class="line"></span><br><span class="line">    cache = set()</span><br><span class="line">    queue = [root]</span><br><span class="line">    <span class="hljs-keyword">while</span> queue:</span><br><span class="line">        node = queue.pop(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">if</span> k - node.val <span class="hljs-keyword">in</span> cache:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span><br><span class="line"></span><br><span class="line">        cache.add(node.val)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> node.left:</span><br><span class="line">            queue.append(node.left)</span><br><span class="line">        <span class="hljs-keyword">if</span> node.right:</span><br><span class="line">            queue.append(node.right)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-09T09:04:03.000Z">2019-02-09</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 156 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/09/2sum/">2Sum</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to specific target.<br>You may assume that each inpjut would have <strong>exactly</strong> one solution, and you may not use the same element twice.</p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The key to this problem is using an external hashtable-like data structure to store the iterated element and its idex in the array, and use such storage to see if the counterpart is already in there.</p>
-<p><strong>NOTE</strong>   </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line">    1-&gt;4-&gt;5,</span><br><span class="line">    1-&gt;3-&gt;4,</span><br><span class="line">    2-&gt;6</span><br><span class="line">]</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>This is a perfect case where heap data structure applies. We can construct a mininum heap at the beginning, and put new node into the heap after retrieving the minimum node each time.   </p>
+<p><strong>Note</strong></p>
 <ul>
-<li>If the length of <code>nums</code> is less than <code>2</code>, it is not necessary to go ahead</li>
-<li>It is better to maintain the <em>order</em> in result list</li>
+<li>Pyhton 3 has different implementation in PriorityQueue module. Dealing with tasks with same priority, we have to put some element to keep the stability. I use timestamp in here.   </li>
 </ul>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">two_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    <span class="hljs-keyword">if</span> len(nums) &lt; <span class="hljs-number">2</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    cache = &#123;&#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> idx, num <span class="hljs-keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="hljs-keyword">if</span> target - num <span class="hljs-keyword">in</span> cache:</span><br><span class="line">            <span class="hljs-keyword">return</span> [cache.get(target-num), idx]</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            cache.update(&#123;num: idx&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> queue <span class="hljs-keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_k_lists</span><span class="hljs-params">(lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">    q = PriorityQueue()</span><br><span class="line">    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> lists:</span><br><span class="line">        <span class="hljs-keyword">if</span> l:</span><br><span class="line">            q.put((l.val, time.time(), l))</span><br><span class="line"></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> q.empty():</span><br><span class="line">        val, _, node = q.get()</span><br><span class="line">        curr.next = node</span><br><span class="line">        curr = curr.next</span><br><span class="line">        node = node.next</span><br><span class="line">        <span class="hljs-keyword">if</span> node:</span><br><span class="line">            q.put((node.val, time.time(), node))</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -346,6 +199,27 @@
 
 
 
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/categories/LeetCode/page/2/">Previous</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/categories/LeetCode/page/4/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/categories/LeetCode/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/categories/LeetCode/page/2/">2</a></li>
+            
+            <li><a class="pagination-link is-current" href="/wanderland/categories/LeetCode/page/3/">3</a></li>
+            
+        </ul>
+    </nav>
+</div>
 </div>
                 
 
