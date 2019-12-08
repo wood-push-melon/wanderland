@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>WanderLand</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="WanderLand">
+<meta property="og:url" content="https://wood-push-melon.github.io/wanderland/page/5/index.html">
+<meta property="og:site_name" content="WanderLand">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WanderLand">
+<meta name="twitter:image" content="https://wood-push-melon.github.io/wanderland/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/wanderland/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/tomorrow-night-eighties.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/wanderland/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/wanderland/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/wanderland/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/wanderland/">
+            
+                <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/wanderland/">Home</a>
+                
+                <a class="navbar-item" href="/wanderland/archives">Archives</a>
+                
+                <a class="navbar-item" href="/wanderland/categories">Categories</a>
+                
+                <a class="navbar-item" href="/wanderland/tags">Tags</a>
+                
+                <a class="navbar-item" href="/wanderland/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/wood-push-melon">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-10T14:22:23.000Z">2019-02-10</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 445 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/10/2sum-sorted/">Two Sum II - Input array is sorted</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.   </p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.   </p>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>Your returned answers (both index1 and index2) are not zero-based.</li>
+<li>You may assume that each input would have exactly one solution and you may not use the same element twice.</li>
+</ul>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: numbers = [2,7,11,15], target = 9</span><br><span class="line"></span><br><span class="line">Output: [1,2]</span><br><span class="line"></span><br><span class="line">Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.</span><br></pre></td></tr></table></figure>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The key point is to take advantage of <strong>sorted array</strong>. We can use <strong>two pointers</strong> strategy or <strong>binary search</strong> method to solve this problem. Two solutions are shown below respectively. Solution with two pointers is relatively easy to catch, and it should be the <em>first</em> answer you provide in an interview.   </p>
+<p><strong>Two pointer solution:</strong></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution with two pointers</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    lo, hi = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> lo &lt; hi:</span><br><span class="line">        s = nums[lo] + nums[hi]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [lo+<span class="hljs-number">1</span>, hi+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            lo += <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            hi -= <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>Binary search solution:</strong></p>
+<p>Binary search solution is kind of <em>difficult</em> to understant compared with two pointer one. Basically it uses binary search algorithm to move <code>start</code> or <code>end</code> pointer faster rather than one step in each iteration.   </p>
+<p>It tries to move <code>start</code> to a new position where <code>nums[start]</code> is the first value that <code>nums[start] &gt;= target - nums[end]</code> if the sum is less than <code>target</code>. Similar logic applies to <code>end</code> pointer.   </p>
+<p>In each helper function, we only consider the pointer we care about.</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Solution using binary search</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    start, end = <span class="hljs-number">0</span>, len(nums) - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt; end:</span><br><span class="line">        s = nums[start] + nums[end]</span><br><span class="line">        <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">            <span class="hljs-keyword">return</span> [start+<span class="hljs-number">1</span>, end+<span class="hljs-number">1</span>]</span><br><span class="line">        <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">            <span class="hljs-comment"># need to adjust start pointer</span></span><br><span class="line">            start = binary_search_start(nums, start, end, target-nums[end])</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-comment"># need to adjust end pointer</span></span><br><span class="line">            end = binary_search_end(nums, start, end, target-nums[start])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_start</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the start pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[start] is the first element greater than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &lt; key:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">binary_search_end</span><span class="hljs-params">(nums, start, end, key)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Move the end pointer to the position</span></span><br><span class="line"><span class="hljs-string">    where nums[end] is the last element less than or equal to the key</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[mid] &gt; key:</span><br><span class="line">            end = mid - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            start = mid + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> end</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-09T09:04:03.000Z">2019-02-09</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 156 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/09/2sum/">2Sum</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to specific target.<br>You may assume that each inpjut would have <strong>exactly</strong> one solution, and you may not use the same element twice.</p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The key to this problem is using an external hashtable-like data structure to store the iterated element and its idex in the array, and use such storage to see if the counterpart is already in there.</p>
+<p><strong>NOTE</strong>   </p>
+<ul>
+<li>If the length of <code>nums</code> is less than <code>2</code>, it is not necessary to go ahead</li>
+<li>It is better to maintain the <em>order</em> in result list</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">two_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[int]':</span></span><br><span class="line">    <span class="hljs-keyword">if</span> len(nums) &lt; <span class="hljs-number">2</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    cache = &#123;&#125;</span><br><span class="line">    <span class="hljs-keyword">for</span> idx, num <span class="hljs-keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="hljs-keyword">if</span> target - num <span class="hljs-keyword">in</span> cache:</span><br><span class="line">            <span class="hljs-keyword">return</span> [cache.get(target-num), idx]</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            cache.update(&#123;num: idx&#125;)</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-29T12:46:25.000Z">2018-12-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 121 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2018/12/29/hello-world/">Hello World</a>
+            
+        </h1>
+        <div class="content">
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="hljs-string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/4/">Previous</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/6/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/">1</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/wanderland/page/4/">4</a></li>
+            
+            <li><a class="pagination-link is-current" href="/wanderland/page/5/">5</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/wanderland/images/avatar.png" alt="Wood Push Melon">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Wood Push Melon
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Software Engineer in Test
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Beijing, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        43
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        2
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        24
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/wood-push-melon">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com/shu.du.357">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/wanderland/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://treyhunner.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Trey Hunner</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">treyhunner.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://jvns.ca/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Julia Evans</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">jvns.ca</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://soulteary.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Su Yang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">soulteary.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://draveness.me/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">draveness</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">draveness.me</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.kawabangga.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Lai Xintao</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.kawabangga.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://manjusaka.itscoder.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Manjusaka</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">manjusaka.itscoder.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/wanderland/categories/Collection/">
+            <span class="level-start">
+                <span class="level-item">Collection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
+            <span class="level-start">
+                <span class="level-item">LeetCode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">26</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 11.43px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
+                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers II">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T10:51:52.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="has-link-black-ter is-size-6">Add Two Numbers II</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Algorithms/">
+                        <span class="tag">Algorithms</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Array/">
+                        <span class="tag">Array</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Article/">
+                        <span class="tag">Article</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Big-Manipulation/">
+                        <span class="tag">Big Manipulation</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Binary-Search/">
+                        <span class="tag">Binary Search</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
+                        <span class="tag">Depth-first Search</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
+                        <span class="tag">Hash Table</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Interleave/">
+                        <span class="tag">Interleave</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Learn/">
+                        <span class="tag">Learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
+                        <span class="tag">LeetCode</span>
+                        <span class="tag is-grey">36</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
+                        <span class="tag">Linked List</span>
+                        <span class="tag is-grey">28</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Math/">
+                        <span class="tag">Math</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Recursion/">
+                        <span class="tag">Recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
+                        <span class="tag">Sentinel</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sort/">
+                        <span class="tag">Sort</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sorting/">
+                        <span class="tag">Sorting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Stack/">
+                        <span class="tag">Stack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tools/">
+                        <span class="tag">Tools</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tree/">
+                        <span class="tag">Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
+                        <span class="tag">Two Pointers</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
+                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers II">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T10:51:52.000Z">2019-11-23</time></div>
+                    <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="has-link-black-ter is-size-6">Add Two Numbers II</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Algorithms/">
+                        <span class="tag">Algorithms</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Array/">
+                        <span class="tag">Array</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Article/">
+                        <span class="tag">Article</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Big-Manipulation/">
+                        <span class="tag">Big Manipulation</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Binary-Search/">
+                        <span class="tag">Binary Search</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
+                        <span class="tag">Depth-first Search</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Divide-and-Conquer/">
+                        <span class="tag">Divide and Conquer</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
+                        <span class="tag">Hash Table</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Heap/">
+                        <span class="tag">Heap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Interleave/">
+                        <span class="tag">Interleave</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Learn/">
+                        <span class="tag">Learn</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
+                        <span class="tag">LeetCode</span>
+                        <span class="tag is-grey">36</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
+                        <span class="tag">Linked List</span>
+                        <span class="tag is-grey">28</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Math/">
+                        <span class="tag">Math</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Recursion/">
+                        <span class="tag">Recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sentinel/">
+                        <span class="tag">Sentinel</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sort/">
+                        <span class="tag">Sort</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Sorting/">
+                        <span class="tag">Sorting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Stack/">
+                        <span class="tag">Stack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tools/">
+                        <span class="tag">Tools</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tree/">
+                        <span class="tag">Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Two-Pointers/">
+                        <span class="tag">Two Pointers</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/wanderland/">
+                
+                    <img src="/wanderland/images/logo.svg" alt="WanderLand" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Shu Du&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/wanderland/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/wanderland/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/wanderland/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/wanderland/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/wanderland/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/wanderland/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/wanderland/js/insight.js" defer></script>
+<link rel="stylesheet" href="/wanderland/css/search.css">
+<link rel="stylesheet" href="/wanderland/css/insight.css">
+    
+</body>
+</html>

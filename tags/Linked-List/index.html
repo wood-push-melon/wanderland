@@ -151,6 +151,224 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 483 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/12/08/leetcode/design-linked-list/">Design Linked List</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/design-linked-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Design your implementation of the linked list. You can choose to use the singly linked list or the doubly linked list. A node in a singly linked list should have two attributes: <code>val</code> and <code>next</code>. <code>val</code> is the value of the current node, and <code>next</code> is a pointer/reference to the next node. If you want to use the doubly linked list, you will need one more attribute <code>prev</code> to indicate the previous node in the linked list. Assume all nodes in the linked list are 0-indexed.   </p>
+<p>Implement these functions in you linked list class:</p>
+<ul>
+<li><code>get(index)</code> : Get the value of the <code>index</code>-th node in the linked list. If the index is invalid, return <code>-1</code>.</li>
+<li><code>addAtHead(val)</code> : Add a node of value <code>val</code> before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.</li>
+<li><code>addAtTail(val)</code> : Append a node of value <code>val</code> to the last element of the linked list.</li>
+<li><code>addAtIndex(index, val)</code> : Add a node of value <code>val</code> before the <code>index</code>-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If <code>index</code> is greater than the length, the node will not be inserted.</li>
+<li><code>deleteAtIndex(index)</code> : Delete the <code>index</code>-th node in the linked list, if the index is valid.</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>Design customized data structure problem. For linked list, we normally need to maintain a <code>head</code> node and the <code>size</code> of the linked list as instance attributes. Just pay attention to some edge cases like delete head node, or add node at tail when list is empty, etc.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyLinkedList</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        self.head = <span class="hljs-literal">None</span></span><br><span class="line">        self.size = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get</span><span class="hljs-params">(self, index: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> index &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> index &gt;= self.size:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">if</span> self.head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span></span><br><span class="line">        </span><br><span class="line">        curr = self.head</span><br><span class="line">        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(index):</span><br><span class="line">            curr = curr.next</span><br><span class="line">            </span><br><span class="line">        <span class="hljs-keyword">return</span> curr.val</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_at_head</span><span class="hljs-params">(self, val: int)</span> -&gt; int:</span></span><br><span class="line">        node = ListNode(val)</span><br><span class="line">        node.next = self.head</span><br><span class="line"></span><br><span class="line">        self.head = node</span><br><span class="line">        self.size += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_at_tail</span><span class="hljs-params">(self, val: int)</span> -&gt; <span class="hljs-keyword">None</span>:</span></span><br><span class="line">        curr = self.head</span><br><span class="line">        <span class="hljs-keyword">if</span> curr <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">            self.head = ListNode(val)</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(self.size - <span class="hljs-number">1</span>):</span><br><span class="line">                curr = curr.next</span><br><span class="line"></span><br><span class="line">            curr.next = ListNode(val)</span><br><span class="line"></span><br><span class="line">        self.size += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_at_index</span><span class="hljs-params">(self, index: int, val: int)</span> -&gt; <span class="hljs-keyword">None</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> index &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> index &gt; self.size:</span><br><span class="line">            <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> index == <span class="hljs-number">0</span>:</span><br><span class="line">            self.add_at_head(val)</span><br><span class="line">        <span class="hljs-keyword">elif</span> index == self.size:</span><br><span class="line">            self.add_at_tail(val)</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            curr = self.head</span><br><span class="line">            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(index - <span class="hljs-number">1</span>):</span><br><span class="line">                curr = curr.next</span><br><span class="line"></span><br><span class="line">            node = ListNode(val)</span><br><span class="line">            node.next = curr.next</span><br><span class="line">            curr.next = node</span><br><span class="line"></span><br><span class="line">            self.size += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">delete_at_index</span><span class="hljs-params">(self, index: int)</span> -&gt; <span class="hljs-keyword">None</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> self.head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> index &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> index &gt;= self.size:</span><br><span class="line">            <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">        curr = self.head</span><br><span class="line">        <span class="hljs-keyword">if</span> index == <span class="hljs-number">0</span>:</span><br><span class="line">            self.head = curr.next</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(index - <span class="hljs-number">1</span>):</span><br><span class="line">                curr = curr.next</span><br><span class="line"></span><br><span class="line">            curr.next = curr.next.next</span><br><span class="line"></span><br><span class="line">        self.size -= <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 212 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/12/07/leetcode/linked-list-components/">Linked List Components</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/linked-list-components/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>We are given <code>head</code>, the head node of a linked list containing unique integer values.</p>
+<p>We are also given the list <code>G</code>, a subset of the values in the linked list.</p>
+<p>Return the number of connected components in <code>G</code>, where two values are connected if they appear consecutively in the linked list.</p>
+<p>Example 1:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">head: 0-&gt;1-&gt;2-&gt;3</span><br><span class="line">G = [0, 1, 3]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line">0 and 1 are connected, so [0, 1] and [3] are the two connected components.</span><br></pre></td></tr></table></figure></p>
+<p>Example 2:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">head: 0-&gt;1-&gt;2-&gt;3-&gt;4</span><br><span class="line">G = [0, 3, 1, 4]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line">0 and 1 are connected, 3 and 4 are connected, so [0, 1] and [3, 4] are the two connected components.</span><br></pre></td></tr></table></figure></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>To count how many connected components, we turn to count how many times we encounter the case:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curr.val in G but curr.next.val not in G</span><br></pre></td></tr></table></figure>
+<p>This number exactly shows how many connected components in the list based on the given subset values.</p>
+<p><strong>Note</strong> the <code>getattr</code> in the solution, it perfectly deals with the case when moving to the last element.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">num_components</span><span class="hljs-params">(head: ListNode, g: List[int])</span> -&gt; int:</span></span><br><span class="line">    unique_g = set(g)</span><br><span class="line">    res, curr = <span class="hljs-number">0</span>, head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        <span class="hljs-keyword">if</span> curr.val <span class="hljs-keyword">in</span> unique_g <span class="hljs-keyword">and</span> \</span><br><span class="line">            getattr(curr.next, <span class="hljs-string">'val'</span>, <span class="hljs-literal">None</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> unique_g:</span><br><span class="line">            res += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 333 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/">Flatten a Multilevel Doubly Linked List</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>You are given a doubly linked list which in addition to the next and previous pointers, it could have a child pointer, which may or may not point to a separate doubly linked list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in the example below.</p>
+<p>Flatten the list so that all the nodes appear in a single-level, doubly linked list. You are given the head of the first level of the list.</p>
+<p>Example:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line"> 1---2---3---4---5---6--NULL</span><br><span class="line">         |</span><br><span class="line">         7---8---9---10--NULL</span><br><span class="line">             |</span><br><span class="line">             11--12--NULL</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line">1-2-3-7-8-11-12-9-10-4-5-6-NULL</span><br></pre></td></tr></table></figure></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>We can think about this problem like DFS traveral of Tree. Whenever we reach a node with <code>child</code> branch, we follow the path of child branch. Stack is the regular data structure in DFS.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val, prev, next, child)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.prev = prev</span><br><span class="line">        self.next = next</span><br><span class="line">        self.child = child</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten</span><span class="hljs-params">(head: Node)</span> -&gt; Node:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line">    </span><br><span class="line">    stack, prev = [head], <span class="hljs-literal">None</span></span><br><span class="line">    <span class="hljs-keyword">while</span> stack:</span><br><span class="line">        curr = stack.pop()</span><br><span class="line">        <span class="hljs-keyword">if</span> prev:</span><br><span class="line">            prev.next, curr.prev = curr, prev</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">if</span> curr.next:</span><br><span class="line">            stack.append(curr.next)</span><br><span class="line">            </span><br><span class="line">        <span class="hljs-keyword">if</span> curr.child:</span><br><span class="line">            stack.append(curr.child)</span><br><span class="line">            curr.child = <span class="hljs-literal">None</span></span><br><span class="line">            </span><br><span class="line">        prev = curr</span><br><span class="line">        </span><br><span class="line">    <span class="hljs-keyword">return</span> head</span><br></pre></td></tr></table></figure>
+<p>And without using Stack, we can follow our intuition to solve it too. When we reach a node with <code>child</code> branch, we follow the path of child branch and iterate to the end without caring if there is more depth along the path. We “merge” the child path to the upper one.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val, prev, next, child)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.prev = prev</span><br><span class="line">        self.next = next</span><br><span class="line">        self.child = child</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten</span><span class="hljs-params">(head: None)</span> -&gt; <span class="hljs-keyword">None</span></span></span><br><span class="line"><span class="hljs-function">    curr = head</span></span><br><span class="line"><span class="hljs-function">    while curr:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> curr.child:</span><br><span class="line">            tmp = curr.next</span><br><span class="line"></span><br><span class="line">            curr.next = curr.child</span><br><span class="line">            curr.child.prev = curr</span><br><span class="line">            curr.child = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line">            child = curr.next</span><br><span class="line">            <span class="hljs-keyword">while</span> child.next:</span><br><span class="line">                child = child.next</span><br><span class="line"></span><br><span class="line">            child.next = tmp</span><br><span class="line">            <span class="hljs-keyword">if</span> tmp:</span><br><span class="line">                tmp.prev = child</span><br><span class="line"></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> head</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 364 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/">Split Linked List in Parts</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/split-linked-list-in-parts/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a (singly) linked list with head node <code>root</code>, write a function to split the linked list into <code>k</code> consecutive linked list “parts”.</p>
+<p>The length of each part should be as equal as possible: no two parts should have a size differing by more than 1. This may lead to some parts being null.</p>
+<p>The parts should be in order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal parts occurring later.</p>
+<p>Return a List of ListNode’s representing the linked list parts that are formed.</p>
+<p>Example 1:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">root = [1, 2, 3], k = 5</span><br><span class="line">Output: [[1],[2],[3],[],[]]</span><br><span class="line">Explanation:</span><br><span class="line">The input and each element of the output are ListNodes, not arrays.</span><br><span class="line">For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next = null.</span><br><span class="line">The first element output[0] has output[0].val = 1, output[0].next = null.</span><br><span class="line">The last element output[4] is null, but it&apos;s string representation as a ListNode is [].</span><br></pre></td></tr></table></figure></p>
+<p>Example 2:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3</span><br><span class="line">Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]</span><br><span class="line">Explanation:</span><br><span class="line">The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.</span><br></pre></td></tr></table></figure></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The trick is how we iterate to the right head of each separated part of the linked list. We can derive this by using the total length of the list and the number of parts <code>k</code>.   </p>
+<p>The steps to solve this problem:</p>
+<ul>
+<li>Find the total length of the linked list</li>
+<li>Calculate how many nodes should be in each part. Every part has <code>n/k</code> elements, except the first <code>n%k</code> parts have an extra one</li>
+<li>Iterate the linked list based on the step 2 and find the correct head of each part</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">split_list_to_parts</span><span class="hljs-params">(root: ListNode)</span> -&gt; List[ListNode]:</span></span><br><span class="line">    n, curr = <span class="hljs-number">0</span>, root</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        curr = curr.next</span><br><span class="line">        n += <span class="hljs-number">1</span></span><br><span class="line">    base, extra = divmod(n, k)</span><br><span class="line"></span><br><span class="line">    res = []</span><br><span class="line">    curr = root</span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):</span><br><span class="line">        head = curr</span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(base + (<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> i &lt; extra <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>) - <span class="hljs-number">1</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> curr:</span><br><span class="line">                curr = curr.next</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> curr:</span><br><span class="line">            curr.next, curr = <span class="hljs-literal">None</span>, curr.next</span><br><span class="line"></span><br><span class="line">        res.append(head)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-23T10:51:52.000Z">2019-11-23</time>
                 
                 <div class="level-item">
@@ -469,235 +687,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-17T12:07:08.000Z">2019-11-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 194 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/11/17/leetcode/sort-list/">Sort List</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Sort a linked list in <code>O(nlogn)</code> time using constant space complexity.   </p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4-&gt;2-&gt;1-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: -1-&gt;5-&gt;3-&gt;4-&gt;0</span><br><span class="line">Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>To solve this problem in <code>O(nlogn)</code> time complexity, we could use merge sort on linked list. The important part of merge sort is the merge logic in which we will actually solve the <a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener"><strong>Merge Two Sorted Lists</strong></a> problem.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort_list</span><span class="hljs-params">(head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head <span class="hljs-keyword">or</span> head.next:</span><br><span class="line">        <span class="hljs-keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    prev, slow, fast = <span class="hljs-literal">None</span>, head, head</span><br><span class="line">    <span class="hljs-keyword">while</span> fast <span class="hljs-keyword">and</span> fast.next:</span><br><span class="line">        prev = slow</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line"></span><br><span class="line">    prev.next = <span class="hljs-literal">None</span> <span class="hljs-comment"># break up the list in the middle</span></span><br><span class="line">    left, right = head, slow</span><br><span class="line"></span><br><span class="line">    left, right = sort_list(left), sort_list(right)</span><br><span class="line">    <span class="hljs-keyword">return</span> merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge</span><span class="hljs-params">(left: ListNode, right: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    dummy = curr = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">while</span> left <span class="hljs-keyword">and</span> right:</span><br><span class="line">        <span class="hljs-keyword">if</span> left.val &lt;= right.val:</span><br><span class="line">            curr.next = left</span><br><span class="line">            left = left.next</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            curr.next = right</span><br><span class="line">            right = right.next</span><br><span class="line"></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> left:</span><br><span class="line">        curr.next = left</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> right:</span><br><span class="line">        curr.next = right</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-02T09:07:04.000Z">2019-11-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 318 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/11/02/leetcode/insertion-sort-list/">Insertion Sort List</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Sort a linked list using insertion sort.   </p>
-<p><strong>Algorithm of Insertion Sort:</strong></p>
-<ol>
-<li>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.</li>
-<li>At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.</li>
-<li>It repeats until no input elements remain.</li>
-</ol>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 4-&gt;2-&gt;1-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: -1-&gt;5-&gt;3-&gt;4-&gt;0</span><br><span class="line">Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The ordinary insertion sort looks like the following pseudocode:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">i ← 1</span><br><span class="line">while i &lt; length(A)</span><br><span class="line">    x ← A[i]</span><br><span class="line">    j ← i - 1</span><br><span class="line">    while j &gt;= 0 and A[j] &gt; x</span><br><span class="line">        A[j+1] ← A[j]</span><br><span class="line">        j ← j - 1</span><br><span class="line">    end while</span><br><span class="line">    A[j+1] ← x</span><br><span class="line">    i ← i + 1</span><br><span class="line">end while</span><br></pre></td></tr></table></figure>
-<p>However the data structure we are dealing with is linked list. The implementation will be a little different. Because this is a singly linked list, we are only able to loop from the start instead of looping reversely in the sorted section.   </p>
-<p><strong>Note</strong></p>
-<ol>
-<li>We don’t link the <code>dummy</code> node with <code>head</code>. The code <code>prev.next = curr</code> inside the <code>while</code> loop will do it for us.</li>
-<li>We don’t have to start from the first node to search an appropriate location in each iteration. If the current node’s value is greater than the last node (<code>prev</code>) in the sorted section, then there is no need to do <code>prev = dummy</code>.</li>
-</ol>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insertion_sort_list</span><span class="hljs-params">(head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    prev = dummy = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    curr = head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        <span class="hljs-comment"># Only search from the first node when current val is less than</span></span><br><span class="line">        <span class="hljs-comment"># the largest node value in sorted section</span></span><br><span class="line">        <span class="hljs-keyword">if</span> prev.next <span class="hljs-keyword">and</span> cur.val &lt; prev.next.val:</span><br><span class="line">            prev = dummy</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> prev.next <span class="hljs-keyword">and</span> prev.next.val &lt; cur.val:</span><br><span class="line">            prev = prev.next</span><br><span class="line"></span><br><span class="line">        tmp = curr.next</span><br><span class="line">        curr.next = prev.next</span><br><span class="line">        prev.next = curr</span><br><span class="line">        curr = tmp</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-02T03:26:45.000Z">2019-11-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 182 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/11/02/leetcode/reorder-list/">Reorder List</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a singly linked list <code>L: L_0 -&gt; L_1 -&gt; ... -&gt; L_n-1 -&gt; L_n</code><br>reorder it to: <code>L_0 -&gt; L_n -&gt; L_1 -&gt; L_n-1 -&gt; L_2 -&gt; L_n-2 -&gt; ...</code></p>
-<p>You may <strong>not</strong> modify the values in the list’s nodes, only nodes itself may be changed.   </p>
-<p>Example 1:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Given 1-&gt;2-&gt;3-&gt;4, reorder it to 1-&gt;4-&gt;2-&gt;3.</span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Given 1-&gt;2-&gt;3-&gt;4-&gt;5, reorder it to 1-&gt;5-&gt;2-&gt;4-&gt;3.</span><br></pre></td></tr></table></figure>
-<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>The key to solve this problem is:</p>
-<ol>
-<li>Reverse the second half of the list</li>
-<li>Unlink the first half and the reversed second half of the list</li>
-<li>Interleave the two halves</li>
-</ol>
-<p><strong>Note</strong><br>Pay attention to the code section doing the interleaving. This is a general pattern.</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reorder_list</span><span class="hljs-params">(head: ListNode)</span> -&gt; <span class="hljs-keyword">None</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> head <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> head.next:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    prev, slow, fast = <span class="hljs-literal">None</span>, head, head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> fast <span class="hljs-keyword">and</span> fast.next:</span><br><span class="line">        prev = slow</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line"></span><br><span class="line">    right = reverse(slow) <span class="hljs-comment"># Reverse the second half</span></span><br><span class="line"></span><br><span class="line">    prev.next = <span class="hljs-literal">None</span> <span class="hljs-comment"># Unlink</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># Interleave two halves</span></span><br><span class="line">    left = head</span><br><span class="line">    <span class="hljs-keyword">while</span> left <span class="hljs-keyword">and</span> right:</span><br><span class="line">        temp = left.next</span><br><span class="line">        left.next = right</span><br><span class="line">        left = left.next</span><br><span class="line">        right = temp</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-24T14:54:56.000Z">2019-10-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 339 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/10/24/leetcode/copy-list-with-random-pointer/">Copy List with Random Pointer</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or <code>null</code>. Return a deep copy of the list.   </p>
-<p><strong>Note:</strong><br>You must return the <strong>copy of the given head</strong> as a reference to the cloned list.   </p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>This problem truely did give me headache. The difficulty comes from the additional <code>random</code> pointer. It is very straightforward if only the <code>next</code> pointer exists. We can just simply clone the original linked list by iterating it. But this time we have another <code>random</code> pointer.   </p>
-<p>The key to solve this problem is to build up the mapping between the original list and cloned list, and hash table would be the perfect data structure.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping: &#123;original_node: cloned_node&#125;</span><br></pre></td></tr></table></figure>
-<p>Obviously we need to iterate the linked list twice. We have to build up the mapping in the first pass, and weave the cloned list in the second pass.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, val, next, random)</span>:</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">        self.random = random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">copy_random_list</span><span class="hljs-params">(head: Node)</span> -&gt; Node:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    mapping = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr] = Node(curr.val, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>)</span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    curr = head</span><br><span class="line">    <span class="hljs-keyword">while</span> curr:</span><br><span class="line">        mapping[curr].next = mapping.get(curr.next)     <span class="hljs-comment"># curr_cloned.next = (curr.next)_cloned</span></span><br><span class="line">        mapping[curr].random = mapping.get(curr.random) <span class="hljs-comment"># curr_cloned.random = (curr.random)_cloned</span></span><br><span class="line">        curr = curr.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> mapping[head] <span class="hljs-comment"># head_cloned</span></span><br></pre></td></tr></table></figure>
-<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow-up"></a><strong>Follow-up</strong></h3><p>This solution uses additional space to maintain the mapping relationship. There is another solution which claims that it only uses <code>O(1)</code> space. The bottom line is still keeping the mapping, but it uses another form to do that: it interleaves the original and cloned lists.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 1 -&gt; 1&apos; -&gt; 2 -&gt; 2&apos; -&gt; null</span><br><span class="line"> |</span><br><span class="line">curr</span><br></pre></td></tr></table></figure>
-<p>So we can use the following formula to make the random pointers of the cloned nodes correct.   </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curr.next.random = curr.random.next</span><br></pre></td></tr></table></figure>
-<p>But at the end, we need to pick up the cloned nodes and reconnect their <code>next</code> pointers.   </p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -762,7 +751,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        39
+                        43
                     </p>
                 </div>
             </div>
@@ -948,7 +937,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">22</span>
+                <span class="level-item tag">26</span>
             </span>
         </a></li>
             </ul>
@@ -962,7 +951,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 11.43px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
     </div>
 </div>
 
@@ -976,6 +965,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
+                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -996,82 +1061,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/odd-even-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Odd Even Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T08:20:17.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/odd-even-linked-list/" class="has-link-black-ter is-size-6">Odd Even Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/delete-node-in-a-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Delete Node in a Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T07:26:34.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/delete-node-in-a-linked-list/" class="has-link-black-ter is-size-6">Delete Node in a Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T14:29:42.000Z">2019-11-18</time></div>
-                    <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="has-link-black-ter is-size-6">Remove Linked List Elements</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1083,6 +1072,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/11/">
@@ -1294,14 +1294,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">36</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">24</span>
+                        <span class="tag is-grey">28</span>
                     </a>
                 </div>
                 
@@ -1343,7 +1343,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1400,6 +1400,82 @@
         
         <article class="media">
             
+            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
+                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
+                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Add Two Numbers II">
@@ -1410,82 +1486,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T10:51:52.000Z">2019-11-23</time></div>
                     <a href="/wanderland/2019/11/23/leetcode/add-two-numbers-ii/" class="has-link-black-ter is-size-6">Add Two Numbers II</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/odd-even-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Odd Even Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T08:20:17.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/odd-even-linked-list/" class="has-link-black-ter is-size-6">Odd Even Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/delete-node-in-a-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Delete Node in a Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T07:26:34.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/delete-node-in-a-linked-list/" class="has-link-black-ter is-size-6">Delete Node in a Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Palindrome Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T03:10:32.000Z">2019-11-23</time></div>
-                    <a href="/wanderland/2019/11/23/leetcode/palindrome-linked-list/" class="has-link-black-ter is-size-6">Palindrome Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Linked List Elements">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T14:29:42.000Z">2019-11-18</time></div>
-                    <a href="/wanderland/2019/11/18/leetcode/remove-linked-list-elements/" class="has-link-black-ter is-size-6">Remove Linked List Elements</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1504,6 +1504,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/11/">
@@ -1715,14 +1726,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">32</span>
+                        <span class="tag is-grey">36</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">24</span>
+                        <span class="tag is-grey">28</span>
                     </a>
                 </div>
                 
@@ -1764,7 +1775,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
