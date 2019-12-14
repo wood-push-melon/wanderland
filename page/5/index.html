@@ -141,6 +141,163 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-18T03:37:28.000Z">2019-02-18</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 242 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/18/3sum-closest/">3 Sum Closest</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/3sum-closest/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers and in interger <code>target</code>, find three integers in <code>nums</code> such that the sum is closest to <code>target</code>. Return the sum of the three integers. You may assume that each input would have exactly one solution.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 2, 1, -4], and target = 1.</span><br><span class="line"></span><br><span class="line">The sum that is closest to the target is 2. (-1 + 2 + 1 = 2)</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The solution to this problem is adapted from the solution in <a href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener"><strong>3 Sum</strong></a>, applying the two pointers strategy. Adaptations are straightforward.   </p>
+<p><strong>NOTE</strong>:</p>
+<ul>
+<li>Initially the <code>closest</code> sum should be given a starting value for comparison inside the loop later. Here we start it with the sum of first three elements, which is the minimum sum among all three-element combinations after soring the input array. However, what the <code>closest</code> initially is does not matter.   </li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">three_sum_closest</span><span class="hljs-params">(nums, target)</span>:</span></span><br><span class="line">    n = len(nums)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">3</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    nums.sort()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># initialize closest sum</span></span><br><span class="line">    closest = nums[<span class="hljs-number">0</span>] + nums[<span class="hljs-number">1</span>] + nums[<span class="hljs-number">2</span>]</span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">        l , r = i + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">            s = nums[<span class="hljs-number">0</span>] + nums[<span class="hljs-number">1</span>] + nums[<span class="hljs-number">2</span>]</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">                <span class="hljs-keyword">return</span> s</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> abs(s-target) &lt; abs(closest-target):</span><br><span class="line">                closest = s</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> s &lt; target:</span><br><span class="line">                l = increment(nums, l, r)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> closest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-16T15:17:07.000Z">2019-02-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 302 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/16/3sum/">3 Sum</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers, are there three elements <em>a, b, c</em> in <code>nums</code> such that <em>a + b + c</em> = 0 ? Find all unique triplets in the array which gives the sum of zero.   </p>
+<p>Note:   </p>
+<p>The solution set must not contain duplicate triplets.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 0, 1, 2, -1, -4],</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>Two pointers strategy comes to help again. We can first sort the input array, and then make use of the solution in <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener"><strong>2 sum with sorted input array</strong></a> to solve this <strong>3 sum</strong> problem when we fix the first element <em>a</em>.   </p>
+<p><strong>NOTE</strong>   </p>
+<ul>
+<li>The problem specifies that no duplicate driplets should appear in the result, so we have to take this in mind. To meet this requirement, moving left and right pointers should be more <em>aggressive</em>, like skipping next element with same value.   </li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">three_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>)</span> -&gt; 'List[List[int]]':</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">3</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    nums.sort() <span class="hljs-comment"># sort the input first</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">        <span class="hljs-comment"># no need to move on if the fixed element is greater than 0</span></span><br><span class="line">        <span class="hljs-keyword">if</span> nums[i] &gt; <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># skip elements with same value</span></span><br><span class="line">        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] == nums[i<span class="hljs-number">-1</span>]:</span><br><span class="line">            <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">        l, r = i + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">            s = nums[i] + nums[l] + nums[r]</span><br><span class="line">            <span class="hljs-keyword">if</span> s == <span class="hljs-number">0</span>:</span><br><span class="line">                res.append([nums[i], nums[l], nums[r]])</span><br><span class="line">                l = increment(nums, l, r)</span><br><span class="line">                r = decrement(nums, l, r)</span><br><span class="line">            <span class="hljs-keyword">elif</span> s &lt; <span class="hljs-number">0</span>:</span><br><span class="line">                l = increment(nums, l, r)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># increment pointer by skipping same-value elements</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># decrement pointer by skipping same-value elements</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-14T05:57:28.000Z">2019-02-14</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 817 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/02/14/sorting/">Sorting Algorithms</a>
+            
+        </h1>
+        <div class="content">
+            <p>This post is aim to summerize a handful of fundamental sorting algoritms that one should be very familiar with.   </p>
+<h3 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a><a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank" rel="noopener">Bubble Sort</a></h3><p>It compares adjacent two elements in the input array to check if a swap is needed. The right half section is sorted.<br>Time complexity is <code>O(n^2)</code>.<br>It is stable.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    n = len(seq)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">        flag = <span class="hljs-literal">False</span></span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n - i - <span class="hljs-number">1</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> seq[j] &gt; seq[j+<span class="hljs-number">1</span>]:</span><br><span class="line">                seq[j], seq[j+<span class="hljs-number">1</span>] = seq[j+<span class="hljs-number">1</span>], seq[j]</span><br><span class="line">                flag = <span class="hljs-literal">True</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> flag <span class="hljs-keyword">is</span> <span class="hljs-literal">False</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br></pre></td></tr></table></figure>
+<h3 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a><a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank" rel="noopener">Insertion Sort</a></h3><p>It divides the input sequence into two parts: sorted and unsorted sections. Unsorted section starts from <code>i</code> to the end.<br>It compares the first element <code>seq[i]</code> in unsorted section with element <code>seq[j]</code> in sorted part in reverse order step by step by moving sorted elements until a proper location is found.<br>Time complexity is <code>O(n^2)</code>.<br>It is stable.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insertion_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    n = len(seq)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, n):</span><br><span class="line">        value = seq[i]</span><br><span class="line">        j = i - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> j &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> seq[j] &gt; value:</span><br><span class="line">            seq[j+<span class="hljs-number">1</span>] = seq[j]</span><br><span class="line">            j -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">        seq[j+<span class="hljs-number">1</span>] = value</span><br></pre></td></tr></table></figure>
+<h3 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a><a href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank" rel="noopener">Selection Sort</a></h3><p>Similarly, it divides the input into sorted and unsorted parts. It picks minimum value <code>seq[min_idx]</code> at each iteration to swap with head element <code>seq[i]</code> in the unsorted section.<br>Time complexity is <code>O(n^2)</code>.<br>It is <strong>NOT</strong> stable.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">selection_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    n = len(seq)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">        min_idx = i</span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>, n):</span><br><span class="line">            <span class="hljs-keyword">if</span> seq[j] &lt; seq[min_idx]:</span><br><span class="line">                min_idx = j</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> min_idx != i:</span><br><span class="line">            seq[i], seq[min_idx] = seq[min_idx], seq[i]</span><br></pre></td></tr></table></figure>
+<h3 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a><a href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank" rel="noopener">Merge Sort</a></h3><p>It at the beginning divides the input array recursively, and later rebuild it by merging two parts in ascending order. The <code>merge</code> implementation is the hinge.<br>Time complexity is <code>O(nlogn)</code>.<br>It is stable.   </p>
+<p>Recursion equation:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">merge_sort(l...r) = merge(merge_sort(l...m), merge(m+1...r))</span><br><span class="line"></span><br><span class="line">it terminates when:</span><br><span class="line">l &gt;= r</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    sort(seq, <span class="hljs-number">0</span>, len(seq)<span class="hljs-number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort</span><span class="hljs-params">(seq, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> l &gt;= r:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    m = l + (r - l) // <span class="hljs-number">2</span></span><br><span class="line">    sort(seq, l, m)</span><br><span class="line">    sort(seq, m+<span class="hljs-number">1</span>, r)</span><br><span class="line">    merge(seq, l, m, r)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">merge</span><span class="hljs-params">(seq, l, m, r)</span>:</span></span><br><span class="line">    i, j = l, m+<span class="hljs-number">1</span></span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="hljs-keyword">while</span> i &lt;= m <span class="hljs-keyword">and</span> j &lt;= r:</span><br><span class="line">        <span class="hljs-keyword">if</span> seq[i] &lt;= seq[j]:</span><br><span class="line">            tmp.append(seq[i])</span><br><span class="line">            i += <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            tmp.append(seq[j])</span><br><span class="line">            j += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    start = i <span class="hljs-keyword">if</span> i &lt;= m <span class="hljs-keyword">else</span> j</span><br><span class="line">    end = m <span class="hljs-keyword">if</span> i &lt;= m <span class="hljs-keyword">else</span> r</span><br><span class="line">    tmp.extend(seq[start:end])</span><br><span class="line"></span><br><span class="line">    seq[:] = tmp</span><br></pre></td></tr></table></figure>
+<h3 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a><a href="https://en.wikipedia.org/wiki/Quicksort" target="_blank" rel="noopener">Quick Sort</a></h3><p>The key is all about <code>partition</code> implementation. It picks the last element as <code>pivot</code> to make sure all elements before the <code>pivot</code> are less than it, and elements after it are greater.<br>Time complexity is <code>O(nlogn)</code>.<br>It is <strong>NOT</strong> stable.   </p>
+<p>Recursion equation:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">quick_sort(l...r) = quick_sort(l...p-1) + quick_sort(p+1...r)</span><br><span class="line"></span><br><span class="line">it terminates when:</span><br><span class="line">l &gt;= r</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    sort(seq, <span class="hljs-number">0</span>, len(seq) - <span class="hljs-number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort</span><span class="hljs-params">(seq, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> l &gt;= r:</span><br><span class="line">        <span class="hljs-keyword">return</span></span><br><span class="line"></span><br><span class="line">    pivot = partition(seq, l, r)</span><br><span class="line">    sort(seq, l, pivot<span class="hljs-number">-1</span>)</span><br><span class="line">    sort(seq, pivot+<span class="hljs-number">1</span>, r)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">partition</span><span class="hljs-params">(seq, l, r)</span>:</span></span><br><span class="line">    pivot = seq[r]</span><br><span class="line"></span><br><span class="line">    i = l</span><br><span class="line">    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(l, r):</span><br><span class="line">        <span class="hljs-keyword">if</span> seq[j] &lt; pivot:</span><br><span class="line">            seq[i], seq[j] = seq[j], seq[i]</span><br><span class="line">            i += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    seq[i], seq[r] = seq[r], seq[i]</span><br><span class="line">    <span class="hljs-keyword">return</span> i</span><br></pre></td></tr></table></figure>
+<h3 id="Heap-Sort"><a href="#Heap-Sort" class="headerlink" title="Heap Sort"></a><a href="https://en.wikipedia.org/wiki/Heapsort" target="_blank" rel="noopener">Heap Sort</a></h3><p>Heap Sort continuously swaps the top element (the maximum) with the last element in the heap, and build the heap again.<br>Time complexity is <code>O(nlogn)</code>.<br>It is <strong>NOT</strong> stable.</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    build_heap(seq)</span><br><span class="line"></span><br><span class="line">    heap_size = len(seq) - <span class="hljs-number">1</span></span><br><span class="line">    <span class="hljs-keyword">for</span> last <span class="hljs-keyword">in</span> range(heap_size, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>):</span><br><span class="line">        seq[<span class="hljs-number">0</span>], seq[last] = seq[last], seq[<span class="hljs-number">0</span>]</span><br><span class="line">        heap_size -= <span class="hljs-number">1</span></span><br><span class="line">        heapify(seq, <span class="hljs-number">0</span>, heap_size)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> seq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_heap</span><span class="hljs-params">(seq)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    Only necessary to build heap from 0 to n // 2 because leaf nodes start from n // 2 + 1</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    n = len(seq) - <span class="hljs-number">1</span></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n // <span class="hljs-number">2</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>):</span><br><span class="line">        heapify(seq, i, n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">heapify</span><span class="hljs-params">(seq, i, n)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">        l, r = <span class="hljs-number">2</span> * i + <span class="hljs-number">1</span>, <span class="hljs-number">2</span> * i + <span class="hljs-number">2</span></span><br><span class="line"></span><br><span class="line">        max_idx = i</span><br><span class="line">        <span class="hljs-keyword">if</span> l &lt;= n <span class="hljs-keyword">and</span> seq[i] &lt; seq[l]:</span><br><span class="line">            max_idx = l</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> r &lt;= n <span class="hljs-keyword">and</span> seq[max_idx] &lt; seq[r]:</span><br><span class="line">            max_idx = r</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> max_idx == i:</span><br><span class="line">            <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">        seq[i], seq[max_idx] = seq[max_idx], seq[i]</span><br><span class="line">        i = max_idx</span><br></pre></td></tr></table></figure>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Merge Sort and Quick Sort are based on <code>Divide and Conquer</code> strategy. They are capable of sorting large-scale data, while others left are supposed to sort data in musch smaller size.   </p>
+<p>Even though having the same time complexity, Heap Sort is not superior to Quick Sort. Heap Sort needs more swap processes, and heapify procedure does not access data in the array sequentially, unfriendly to CPU cache.   </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-02-12T06:56:31.000Z">2019-02-12</time>
                 
                 
@@ -404,7 +561,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        44
+                        47
                     </p>
                 </div>
             </div>
@@ -424,7 +581,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        24
+                        25
                     </p>
                 </div>
             </div>
@@ -590,7 +747,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">27</span>
+                <span class="level-item tag">30</span>
             </span>
         </a></li>
             </ul>
@@ -604,7 +761,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 12.86px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 14.29px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 12.86px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 15.71px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 14.29px;">Sentinel</a> <a href="/wanderland/tags/Set/" style="font-size: 10px;">Set</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 14.29px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 12.86px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
     </div>
 </div>
 
@@ -621,7 +778,64 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T14:21:13.000Z">2019-12-14</time></div>
+                    <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
+                    <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Inorder Travesal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
+                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
                 </p>
@@ -630,7 +844,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -640,7 +854,7 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
                 </p>
@@ -649,64 +863,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -732,7 +889,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -898,7 +1055,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
                         <span class="tag">Depth-first Search</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -919,7 +1076,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -947,14 +1104,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">37</span>
+                        <span class="tag is-grey">40</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">29</span>
+                        <span class="tag is-grey">30</span>
                     </a>
                 </div>
                 
@@ -980,6 +1137,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Set/">
+                        <span class="tag">Set</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
                         <span class="tag is-grey">2</span>
@@ -996,7 +1160,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1010,7 +1174,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1053,7 +1217,64 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T14:21:13.000Z">2019-12-14</time></div>
+                    <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
+                    <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Inorder Travesal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
+                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
                 </p>
@@ -1062,7 +1283,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1072,7 +1293,7 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
                 </p>
@@ -1081,64 +1302,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1164,7 +1328,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1330,7 +1494,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
                         <span class="tag">Depth-first Search</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1351,7 +1515,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1379,14 +1543,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">37</span>
+                        <span class="tag is-grey">40</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">29</span>
+                        <span class="tag is-grey">30</span>
                     </a>
                 </div>
                 
@@ -1412,6 +1576,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Set/">
+                        <span class="tag">Set</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
                         <span class="tag is-grey">2</span>
@@ -1428,7 +1599,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1442,7 +1613,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

@@ -151,6 +151,57 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-11T13:50:55.000Z">2019-09-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 178 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/09/11/leetcode/linked_list/partition-list/">Partition List</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/partition-list/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list and a value <em>x</em>, partition it such that all nodes less than <em>x</em> come before nodes greater than or equal to <em>x</em>.   </p>
+<p>You should preserve the original order of the nodes in each of the two partitions.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: head = 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2, x = 3</span><br><span class="line">Output: 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The strategy to solve this problem is kind of straightforward: we can start with <strong>two pointers</strong>, one is going to knit all nodes less than <em>x</em> and another with the rest. We finish the problem by connecting the two lists together.   </p>
+<p>The time complexity is <code>O(n)</code> and space complexity is <code>O(1)</code>.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">partition_list</span><span class="hljs-params">(head: ListNode, x: int)</span> -&gt; ListNode:</span></span><br><span class="line">    before_dummy = before = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line">    after_dummy = after = ListNode(<span class="hljs-number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> head:</span><br><span class="line">        <span class="hljs-keyword">if</span> head.val &lt; x:</span><br><span class="line">            before.next = head</span><br><span class="line">            before = before.next</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            after.next = head</span><br><span class="line">            after = after.next</span><br><span class="line">        head = head.next</span><br><span class="line"></span><br><span class="line">    after.next = <span class="hljs-literal">None</span> <span class="hljs-comment"># DON'T forget to cut off the tail's next</span></span><br><span class="line">    before.next = after_dummy.next</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> before.dummy</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-10T14:22:09.000Z">2019-09-10</time>
                 
                 <div class="level-item">
@@ -170,7 +221,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/09/10/leetcode/remove-duplicates-from-sorted-list-ii/">Remove Duplicates from Sorted List II</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/09/10/leetcode/linked_list/remove-duplicates-from-sorted-list-ii/">Remove Duplicates from Sorted List II</a>
             
         </h1>
         <div class="content">
@@ -221,7 +272,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/09/09/leetcode/remove-duplicates-from-sorted-list/">Remove Duplicates from Sorted List</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/09/09/leetcode/linked_list/remove-duplicates-from-sorted-list/">Remove Duplicates from Sorted List</a>
             
         </h1>
         <div class="content">
@@ -272,7 +323,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/09/08/leetcode/rotate-list/">Rotate List</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/09/08/leetcode/linked_list/rotate-list/">Rotate List</a>
             
         </h1>
         <div class="content">
@@ -323,7 +374,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/06/02/leetcode/reverse-linked-list/">Reverse Linked List</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/06/02/leetcode/linked_list/reverse-linked-list/">Reverse Linked List</a>
             
         </h1>
         <div class="content">
@@ -376,7 +427,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/06/02/reverse-nodes-k-group/">Reverse Nodes in k-Group</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/06/02/leetcode/linked_list/reverse-nodes-k-group/">Reverse Nodes in k-Group</a>
             
         </h1>
         <div class="content">
@@ -432,7 +483,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/06/01/swap-nodes-in-pairs/">Swap Nodes in Pairs</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/06/01/leetcode/linked_list/swap-nodes-in-pairs/">Swap Nodes in Pairs</a>
             
         </h1>
         <div class="content">
@@ -481,7 +532,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/05/30/remove-nth-node-from-end/">Remove Nth Node From End of List</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/05/30/leetcode/linked_list/remove-nth-node-from-end/">Remove Nth Node From End of List</a>
             
         </h1>
         <div class="content">
@@ -534,7 +585,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/05/29/merge-k-lists/">Merge k Sorted Lists</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/05/29/leetcode/linked_list/merge-k-lists/">Merge k Sorted Lists</a>
             
         </h1>
         <div class="content">
@@ -583,7 +634,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/wanderland/2019/05/23/add-two-numbers/">Add Two Numbers</a>
+                <a class="has-link-black-ter" href="/wanderland/2019/05/23/leetcode/linked_list/add-two-numbers/">Add Two Numbers</a>
             
         </h1>
         <div class="content">
@@ -672,7 +723,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        44
+                        47
                     </p>
                 </div>
             </div>
@@ -692,7 +743,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        24
+                        25
                     </p>
                 </div>
             </div>
@@ -858,7 +909,7 @@
                 <span class="level-item">LeetCode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">27</span>
+                <span class="level-item tag">30</span>
             </span>
         </a></li>
             </ul>
@@ -872,7 +923,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 10px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 14.29px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15.71px;">Sentinel</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 12.86px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 14.29px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 12.86px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 15.71px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 14.29px;">Sentinel</a> <a href="/wanderland/tags/Set/" style="font-size: 10px;">Set</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 14.29px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 12.86px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
     </div>
 </div>
 
@@ -889,7 +940,64 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T14:21:13.000Z">2019-12-14</time></div>
+                    <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
+                    <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Inorder Travesal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
+                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
                 </p>
@@ -898,7 +1006,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -908,7 +1016,7 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
                 </p>
@@ -917,64 +1025,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1000,7 +1051,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1166,7 +1217,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
                         <span class="tag">Depth-first Search</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1187,7 +1238,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1215,14 +1266,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">37</span>
+                        <span class="tag is-grey">40</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">29</span>
+                        <span class="tag is-grey">30</span>
                     </a>
                 </div>
                 
@@ -1248,6 +1299,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Set/">
+                        <span class="tag">Set</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
                         <span class="tag is-grey">2</span>
@@ -1264,7 +1322,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1278,7 +1336,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1321,7 +1379,64 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T14:21:13.000Z">2019-12-14</time></div>
+                    <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Preorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
+                    <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Inorder Travesal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
+                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
                 </p>
@@ -1330,7 +1445,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1340,7 +1455,7 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="media-left">
+            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
                 </p>
@@ -1349,64 +1464,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Linked List Components">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:36:06.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/linked-list-components/" class="has-link-black-ter is-size-6">Linked List Components</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Flatten a Multilevel Doubly Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T09:56:04.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/flatten-multilevel-doubly-linked-list/" class="has-link-black-ter is-size-6">Flatten a Multilevel Doubly Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Split Linked List in Parts">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:58:57.000Z">2019-12-07</time></div>
-                    <a href="/wanderland/2019/12/07/leetcode/split-linked-list-in-parts/" class="has-link-black-ter is-size-6">Split Linked List in Parts</a>
+                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1432,7 +1490,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1598,7 +1656,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Depth-first-Search/">
                         <span class="tag">Depth-first Search</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1619,7 +1677,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1647,14 +1705,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/LeetCode/">
                         <span class="tag">LeetCode</span>
-                        <span class="tag is-grey">37</span>
+                        <span class="tag is-grey">40</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">29</span>
+                        <span class="tag is-grey">30</span>
                     </a>
                 </div>
                 
@@ -1680,6 +1738,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Set/">
+                        <span class="tag">Set</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Sort/">
                         <span class="tag">Sort</span>
                         <span class="tag is-grey">2</span>
@@ -1696,7 +1761,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1710,7 +1775,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
