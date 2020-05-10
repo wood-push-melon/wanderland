@@ -141,6 +141,58 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-02T06:18:29.000Z">2019-06-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 312 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/wanderland/2019/06/02/leetcode/linked_list/reverse-nodes-k-group/">Reverse Nodes in k-Group</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given a linked list, reverse the nodes of a linked list <em>k</em> at a time and return its modified list.<br><em>k</em> is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of <em>k</em> then left-out nodes in the end should remain as it is.   </p>
+<p>Example:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5</span><br><span class="line"></span><br><span class="line">For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong>:</p>
+<ul>
+<li><p>Only constant extra memory is allowed.</p>
+</li>
+<li><p>You may not alter the values in the list’s nodes, only nodes itself may be changed.   </p>
+</li>
+</ul>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a><strong>Solutions</strong></h3><p>We can use the solution in <a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="noopener">Reverse Linked List</a> to reverse each group of the list. And then connect the <em>tail</em> of previous reversed part with the <em>head</em> of the next reversed part.   </p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Tuple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">___init___</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse_k_group</span><span class="hljs-params">(head, k)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Inside each call stack:</span></span><br><span class="line"><span class="hljs-string">    - try to iterate k times to check if there are enough k nodes to reverse</span></span><br><span class="line"><span class="hljs-string">    - reverse k nodes starting from the head of current group</span></span><br><span class="line"><span class="hljs-string">    - connect the head (which is the tail after reversed) of the current group with the head of the next reversed k-node group</span></span><br><span class="line"><span class="hljs-string">    - return the head of current reversed group</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    count, curr = <span class="hljs-number">0</span>, head</span><br><span class="line">    <span class="hljs-keyword">while</span> count &lt; k <span class="hljs-keyword">and</span> curr:</span><br><span class="line">        curr = curr.next</span><br><span class="line">        count += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> count &lt; k:</span><br><span class="line">        <span class="hljs-keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    prev, nxt_head = reverse(head, k)</span><br><span class="line"></span><br><span class="line">    head.next = reverse_k_group(nxt_head, k)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse</span><span class="hljs-params">(head: ListNode, k: int)</span> -&gt; Tuple[ListNode, ListNode]:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    Reverse a single group of nodes</span></span><br><span class="line"><span class="hljs-string">    For example: k = 3</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    Before:</span></span><br><span class="line"><span class="hljs-string">    prev curr</span></span><br><span class="line"><span class="hljs-string">    |    |</span></span><br><span class="line"><span class="hljs-string">         1 -&gt; 2 -&gt; 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    After:</span></span><br><span class="line"><span class="hljs-string">              prev curr</span></span><br><span class="line"><span class="hljs-string">              |    |</span></span><br><span class="line"><span class="hljs-string">    1 &lt;- 2 &lt;- 3 -&gt; 4</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    prev, curr = <span class="hljs-literal">None</span>, head</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(count):</span><br><span class="line">        tmp = curr.next</span><br><span class="line">        curr.next = prev</span><br><span class="line">        prev = curr</span><br><span class="line">        curr = tmp</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> prev, curr</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-02T01:54:15.000Z">2019-06-02</time>
                 
                 <div class="level-item">
@@ -151,7 +203,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 884 words)
+                    7 minutes read (About 1045 words)
                 </span>
                 
                 
@@ -171,7 +223,10 @@
 <li><a href="https://github.com/d4l3k/go-pry" target="_blank" rel="noopener">go-pry</a><br>Go 语言互动式的 REPL 环境，可以直接运行 Go 脚本</li>
 </ul>
 <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><ul>
-<li><a href="https://github.com/wagoodman/dive" target="_blank" rel="noopener">dive</a><br>查看 Docker 镜像文件中的 layer 的工具</li>
+<li><p><a href="https://github.com/wagoodman/dive" target="_blank" rel="noopener">dive</a><br>查看 Docker 镜像文件中的 layer 的工具</p>
+</li>
+<li><p><a href="https://github.com/docker-slim/docker-slim" target="_blank" rel="noopener">docker-slim</a></p>
+</li>
 </ul>
 <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ul>
 <li><a href="https://github.com/danielstjules/jsinspect" target="_blank" rel="noopener">jsinspect</a><br>JavaScript 检查重复代码的工具</li>
@@ -186,6 +241,8 @@
 <li><p><a href="https://github.com/atlassian/react-beautiful-dnd" target="_blank" rel="noopener">react-beautiful-dnd</a><br>React 拖拽组件</p>
 </li>
 <li><p><a href="https://github.com/Raathigesh/majestic" target="_blank" rel="noopener">majestic</a><br>Jest 测试框架的图形界面</p>
+</li>
+<li><p><a href="https://github.com/leeoniya/uPlot" target="_blank" rel="noopener">uPlog</a><br>A small, fast chart for time series, lines, areas, ohlc &amp; bars</p>
 </li>
 </ul>
 <h2 id="组件库"><a href="#组件库" class="headerlink" title="组件库"></a>组件库</h2><ul>
@@ -206,6 +263,8 @@
 <li><p><a href="https://coolbackgrounds.io/" target="_blank" rel="noopener">Cool Backgrounds</a><br>自动生成背景图片的网站</p>
 </li>
 <li><p><a href="https://sketchviz.com/new" target="_blank" rel="noopener">Sketchviz</a><br>生成手绘风格的 Graphviz 图片</p>
+</li>
+<li><p><a href="https://excalidraw.com/" target="_blank" rel="noopener">excalidraw</a><br>简单易用的白板绘图</p>
 </li>
 </ul>
 <h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
@@ -231,6 +290,17 @@
 <li><p><a href="https://octolinker.now.sh/#languages" target="_blank" rel="noopener">OctoLinker</a><br>可以将 Github 的代码中的模块加载语句变成链接直接跳转</p>
 </li>
 </ul>
+<h2 id="Note-Taking"><a href="#Note-Taking" class="headerlink" title="Note Taking"></a>Note Taking</h2><ul>
+<li><a href="https://usememo.com/" target="_blank" rel="noopener">Memo</a><br>可将内容同步到 Github’s gists 的软件</li>
+</ul>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><ul>
+<li><p><a href="https://next.json-generator.com/" target="_blank" rel="noopener">JSON Generator</a><br>一款自动生成虚拟 JSON 数据的工具</p>
+</li>
+<li><p><a href="https://viewer.dadroit.com/" target="_blank" rel="noopener">Dadroit JSON Viewer</a><br>一款浏览大型 JSON 数据文件的桌面软件</p>
+</li>
+<li><p><a href="https://github.com/antonmedv/fx" target="_blank" rel="noopener">fx</a><br>Command-line tool and terminal JSON viewer</p>
+</li>
+</ul>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
 <li><p><a href="https://resume.io/" target="_blank" rel="noopener">resume.io</a><br>提供模版制作简历的网站</p>
 </li>
@@ -240,7 +310,7 @@
 </li>
 <li><p><a href="https://github.com/sindresorhus/refined-github" target="_blank" rel="noopener">refined-github</a><br>为 Github 增加很多功能的浏览器扩展</p>
 </li>
-<li><p><a href="https://github.com/ksky521/nodeppt" target="_blank" rel="noopener">nodeppt</a><br>将 Markdown 文档转换成幻灯片，在浏览器中掩饰</p>
+<li><p><a href="https://github.com/ksky521/nodeppt" target="_blank" rel="noopener">nodeppt</a><br>将 Markdown 文档转换成幻灯片，在浏览器中演示</p>
 </li>
 <li><p><a href="https://github.com/nbedos/termtosvg" target="_blank" rel="noopener">termtosvg</a><br>将命令行操作录制为 svg 动画</p>
 </li>
@@ -260,8 +330,6 @@
 </li>
 <li><p><a href="https://stackshare.io/stacks" target="_blank" rel="noopener">stackshare.io</a><br>收集各个公司使用的技术栈，可以用来查看自己喜欢的公司使用的技术栈</p>
 </li>
-<li><p><a href="https://viewer.dadroit.com/" target="_blank" rel="noopener">Dadroit JSON Viewer</a><br>一款浏览大型 JSON 数据文件的桌面软件</p>
-</li>
 <li><p><a href="https://github.com/xrr2016/hexo-theme-cold-stone" target="_blank" rel="noopener">Hexo theme cold stone</a><br>Hexo 主题</p>
 </li>
 <li><p><a href="https://latex.guide/" target="_blank" rel="noopener">LaTex Search</a><br>LaTex 搜索引擎。你给出英文描述，它返回符号的写法</p>
@@ -269,6 +337,14 @@
 <li><p><a href="https://github.com/danburzo/percollate" target="_blank" rel="noopener">percollate</a><br>命令行抓取网页，生成 PDF</p>
 </li>
 <li><p><a href="https://github.com/slatedocs/slate" target="_blank" rel="noopener">slate</a><br>创建美观的静态 API 文档的框架</p>
+</li>
+<li><p><a href="https://www.sourcetrail.com/" target="_blank" rel="noopener">SourceTrail</a><br>可视化源码浏览器</p>
+</li>
+<li><p><a href="https://www.happyhues.co/" target="_blank" rel="noopener">Happy Hue</a><br>提供配色设计方案的网站，可自定义配色</p>
+</li>
+<li><p><a href="https://insomnia.rest/" target="_blank" rel="noopener">Insomnia</a><br>开源 API 设计和调试的桌面软件</p>
+</li>
+<li><p><a href="http://asciiflow.com/" target="_blank" rel="noopener">asciiflow</a><br>在线画 ASCII 码框图的网站</p>
 </li>
 </ul>
 
@@ -302,7 +378,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1239 words)
+                    9 minutes read (About 1282 words)
                 </span>
                 
                 
@@ -361,6 +437,8 @@
 <li><p><a href="https://habr.com/en/company/yandex/blog/450032/" target="_blank" rel="noopener">如何编写深色主题的 CSS</a><br>本文介绍了 Yandex Mail 团队如何使用 CSS 代码实现 APP 上的深色主题</p>
 </li>
 <li><p><a href="https://www.tutorialdocs.com/article/axios-learn.html" target="_blank" rel="noopener">How to Implement an HTTP Request Library with Axios</a><br>本文分析 axios 的内部设计</p>
+</li>
+<li><p><a href="https://evilmartians.com/chronicles/optimizing-react-virtual-dom-explained" target="_blank" rel="noopener">Optimizing React: Virtual DOM explained</a><br>React 的虚拟 DOM 机制的详细解释，JSX 的代码如何编程虚拟 DOM 的数据结构</p>
 </li>
 </ul>
 <h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><ul>
@@ -634,7 +712,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 585 words)
+                    5 minutes read (About 691 words)
                 </span>
                 
                 
@@ -666,6 +744,8 @@
 </li>
 <li><p><a href="https://github.com/laixintao/python-parallel-programming-cookbook-cn" target="_blank" rel="noopener">Python Parallel Programming Cookbook</a><br>Python Parallel Programming Cookbook 的中文翻译，仓库中也包含英文原版</p>
 </li>
+<li><p><a href="http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/" target="_blank" rel="noopener">SICP Python</a><br>中文翻译在<a href="https://github.com/wizardforcel/sicp-py-zh" target="_blank" rel="noopener">这里</a></p>
+</li>
 </ul>
 <h2 id="Go-Programming"><a href="#Go-Programming" class="headerlink" title="Go Programming"></a>Go Programming</h2><ul>
 <li><p><a href="https://dave.cheney.net/high-performance-go-workshop/gopherchina-2019.html" target="_blank" rel="noopener">High Performance Go Workshop</a></p>
@@ -680,7 +760,10 @@
 </li>
 </ul>
 <h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><ul>
-<li><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank" rel="noopener">pure bash bible</a></li>
+<li><p><a href="https://github.com/0xAX/linux-insides" target="_blank" rel="noopener">linux-insides</a><br>关于 linux 内核的开源书</p>
+</li>
+<li><p><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank" rel="noopener">pure bash bible</a></p>
+</li>
 </ul>
 <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ul>
 <li><p><a href="https://github.com/Mongkii/RMind" target="_blank" rel="noopener">RMind</a><br>作者基于 React Hooks 和 flex 布局实现了思维导图，可以作为学习资源</p>
@@ -688,6 +771,8 @@
 <li><p><a href="https://leanpub.com/build-react-app-with-atdd" target="_blank" rel="noopener">Acceptance Test Driven Development with React</a><br>一位中国的开发者撰写的关于前端测试方面的书</p>
 </li>
 <li><p><a href="https://github.com/goldbergyoni/nodebestpractices" target="_blank" rel="noopener">Node Best Practices</a></p>
+</li>
+<li><p><a href="https://fullstackopen.com/zh/" target="_blank" rel="noopener">深入浅出现代 Web 编程</a><br>一个芬兰的全栈公开课中文版</p>
 </li>
 </ul>
 <h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><ul>
@@ -697,6 +782,10 @@
 <li><p><a href="https://tls.ulfheim.net/" target="_blank" rel="noopener">The Illustrated TLS Connection</a><br>图解 HTTPS 协议对话过程</p>
 </li>
 <li><p><a href="https://www.computer-networking.info/#" target="_blank" rel="noopener">Computer Networking: Principles, Protocols and Practice</a><br>英文开源电子书，介绍了计算机网络原理和各协议栈</p>
+</li>
+<li><p><a href="https://bagder.gitbook.io/http2-explained/" target="_blank" rel="noopener">HTTP/2 explained</a></p>
+</li>
+<li><p><a href="https://bagder.gitbook.io/http3-explained/" target="_blank" rel="noopener">HTTP/3 explained</a></p>
 </li>
 </ul>
 <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ul>
@@ -713,6 +802,8 @@
 <li><p><a href="https://www.coderscat.com/best-cs-books" target="_blank" rel="noopener">The Best CS Books</a><br>作者认为的计算机科学中不错的书籍，其中涵盖编程，算法，编译，操作系统，网络等领域</p>
 </li>
 <li><p><a href="https://developers.google.com/style" target="_blank" rel="noopener">Google developer documentation style guide</a><br>Google 开发者文档风格指南</p>
+</li>
+<li><p><a href="https://codewords.recurse.com/issues/two/git-from-the-inside-out" target="_blank" rel="noopener">Git from the inside out</a><br>Git 原理详解</p>
 </li>
 </ul>
 
@@ -836,63 +927,15 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-20T09:29:24.000Z">2019-02-20</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 251 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/wanderland/2019/02/20/4sum/">4 Sum</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a><a href="https://leetcode.com/problems/4sum/" target="_blank" rel="noopener"><strong>Problem</strong></a></h3><p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, are there elements <em>a, b, c,</em> and <em>d</em> in <code>nums</code> such that <em>a + b +c + d</em> = <code>target</code>? Find all unique quadruplets in the array which gives the sum of <code>target</code>.   </p>
-<p>Note:</p>
-<p>The solution set must not contain duplicate quadruplets.   </p>
-<p>Example:</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [1, 0, -1, 0, -2, 2], and target = 0</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a><strong>Solution</strong></h3><p>The solution to <em>k</em>-sum can always be decomopsed to <em>2</em>-sum problem with <code>k-2</code> loops wrapping. With this strategic template in mind, we can boil down <em>4</em>-sum problem to the following implementation.   </p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">four_sum</span><span class="hljs-params">(nums: <span class="hljs-string">'List[int]'</span>, target: <span class="hljs-string">'int'</span>)</span> -&gt; 'List[List[int]]':</span></span><br><span class="line">    res = []</span><br><span class="line"></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">4</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    nums.sort()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-3</span>):</span><br><span class="line">        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] == nums[i<span class="hljs-number">-1</span>]:</span><br><span class="line">            <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-2</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> j &gt; i+<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> nums[j] == nums[j<span class="hljs-number">-1</span>]:</span><br><span class="line">                <span class="hljs-keyword">continue</span></span><br><span class="line"></span><br><span class="line">            l, r = j + <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> l &lt; r:</span><br><span class="line">                s = nums[i] + nums[j] + nums[l] + nums[r]</span><br><span class="line">                <span class="hljs-keyword">if</span> s == target:</span><br><span class="line">                    res.append([nums[i], nums[j], nums[l], nums[r])</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">elif</span> s &lt; target:</span><br><span class="line">                    l = increment(nums, l, r)</span><br><span class="line">                <span class="hljs-keyword">else</span>:</span><br><span class="line">                    r = decrement(nums, l, r)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">increment</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[l] == nums[l+<span class="hljs-number">1</span>]:</span><br><span class="line">        l += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> l + <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrement</span><span class="hljs-params">(nums, l, r)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> nums[r] == nums[r<span class="hljs-number">-1</span>]:</span><br><span class="line">        r -= <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> r - <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
-<p><strong>NOTE</strong><br><em>k</em>-sum problem can be implemented by using <strong>recursion</strong>. We will add such implementation later.</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/3/">Previous</a>
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/3/">Préc</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/5/">Next</a>
+            <a class="is-flex-grow has-text-black-ter" href="/wanderland/page/5/">Suiv</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -949,17 +992,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
-                        47
+                        48
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
                         2
@@ -972,14 +1015,14 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        25
+                        26
                     </p>
                 </div>
             </div>
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
-                Follow</a>
+                SUIVRE</a>
         </div>
         
         
@@ -1028,7 +1071,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -1121,7 +1164,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -1130,7 +1173,7 @@
                 <span class="level-item">Collection</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/wanderland/categories/LeetCode/">
@@ -1150,9 +1193,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            Nuage de tags
         </h3>
-        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 14.29px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 12.86px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 15.71px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.57px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.86px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 14.29px;">Sentinel</a> <a href="/wanderland/tags/Set/" style="font-size: 10px;">Set</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.43px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 14.29px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 12.86px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.14px;">Two Pointers</a>
+        <a href="/wanderland/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/wanderland/tags/Array/" style="font-size: 15px;">Array</a> <a href="/wanderland/tags/Article/" style="font-size: 10px;">Article</a> <a href="/wanderland/tags/Big-Manipulation/" style="font-size: 10px;">Big Manipulation</a> <a href="/wanderland/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/wanderland/tags/Depth-first-Search/" style="font-size: 12.5px;">Depth-first Search</a> <a href="/wanderland/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/wanderland/tags/Github/" style="font-size: 10px;">Github</a> <a href="/wanderland/tags/Hash-Table/" style="font-size: 15px;">Hash Table</a> <a href="/wanderland/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/wanderland/tags/Interleave/" style="font-size: 10px;">Interleave</a> <a href="/wanderland/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/wanderland/tags/Learn/" style="font-size: 10px;">Learn</a> <a href="/wanderland/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/wanderland/tags/Linked-List/" style="font-size: 18.75px;">Linked List</a> <a href="/wanderland/tags/Math/" style="font-size: 12.5px;">Math</a> <a href="/wanderland/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/wanderland/tags/Sentinel/" style="font-size: 15px;">Sentinel</a> <a href="/wanderland/tags/Set/" style="font-size: 10px;">Set</a> <a href="/wanderland/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/wanderland/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/wanderland/tags/Stack/" style="font-size: 16.25px;">Stack</a> <a href="/wanderland/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/wanderland/tags/Tree/" style="font-size: 13.75px;">Tree</a> <a href="/wanderland/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/wanderland/tags/Two-Pointers/" style="font-size: 17.5px;">Two Pointers</a>
     </div>
 </div>
 
@@ -1164,16 +1207,36 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
-                </p>
-            </a>
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-01T02:44:22.000Z">2020-01-01</time></div>
+                    <a href="/wanderland/2020/01/01/articles/interview/" class="has-link-black-ter is-size-6">关于面试的一些资源</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-15T07:44:45.000Z">2019-12-15</time></div>
+                    <a href="/wanderland/2019/12/15/leetcode/tree/binary-tree-postorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Postorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
             
             <div class="media-content">
                 <div class="content">
@@ -1188,12 +1251,6 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
-                </p>
-            </a>
-            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
@@ -1207,54 +1264,10 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
-                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
-                </p>
-            </a>
-            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
                     <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1273,6 +1286,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/12/">
@@ -1467,7 +1491,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1481,6 +1505,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Interleave/">
                         <span class="tag">Interleave</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Interview/">
+                        <span class="tag">Interview</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1502,7 +1533,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">30</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1551,7 +1582,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1565,7 +1596,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1603,16 +1634,36 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Récents
         </h3>
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/14/leetcode/tree/binary-tree-preorder-traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Preorder Traversal">
-                </p>
-            </a>
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-01T02:44:22.000Z">2020-01-01</time></div>
+                    <a href="/wanderland/2020/01/01/articles/interview/" class="has-link-black-ter is-size-6">关于面试的一些资源</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/Collection/">Collection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-15T07:44:45.000Z">2019-12-15</time></div>
+                    <a href="/wanderland/2019/12/15/leetcode/tree/binary-tree-postorder-traversal/" class="has-link-black-ter is-size-6">Binary Tree Postorder Traversal</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
             
             <div class="media-content">
                 <div class="content">
@@ -1627,12 +1678,6 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/11/leetcode/tree/binary-tree-inorder-traversal/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Binary Tree Inorder Travesal">
-                </p>
-            </a>
-            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T13:44:53.000Z">2019-12-11</time></div>
@@ -1646,54 +1691,10 @@
         
         <article class="media">
             
-            <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Remove Zero Sum Consecutive Nodes from Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T15:21:54.000Z">2019-12-09</time></div>
-                    <a href="/wanderland/2019/12/09/leetcode/linked_list/remove-zero-sum-consecutive-nodes-from-linked-list/" class="has-link-black-ter is-size-6">Remove Zero Sum Consecutive Nodes from Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Next Greater Node in Linked List">
-                </p>
-            </a>
-            
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T15:19:19.000Z">2019-12-08</time></div>
                     <a href="/wanderland/2019/12/08/leetcode/linked_list/next-greater-node-in-linked-list/" class="has-link-black-ter is-size-6">Next Greater Node in Linked List</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/wanderland/images/thumbnail.svg" alt="Design Linked List">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T11:25:13.000Z">2019-12-08</time></div>
-                    <a href="/wanderland/2019/12/08/leetcode/linked_list/design-linked-list/" class="has-link-black-ter is-size-6">Design Linked List</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/wanderland/categories/LeetCode/">LeetCode</a>
                     </p>
@@ -1712,6 +1713,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/wanderland/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/wanderland/archives/2019/12/">
@@ -1906,7 +1918,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Hash-Table/">
                         <span class="tag">Hash Table</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1920,6 +1932,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Interleave/">
                         <span class="tag">Interleave</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/wanderland/tags/Interview/">
+                        <span class="tag">Interview</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1941,7 +1960,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Linked-List/">
                         <span class="tag">Linked List</span>
-                        <span class="tag is-grey">30</span>
+                        <span class="tag is-grey">29</span>
                     </a>
                 </div>
                 
@@ -1990,7 +2009,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Stack/">
                         <span class="tag">Stack</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -2004,7 +2023,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/wanderland/tags/Tree/">
                         <span class="tag">Tree</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -2043,7 +2062,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Shu Du&nbsp;
+                &copy; 2020 Shu Du&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
                 </p>
@@ -2197,9 +2216,9 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
+                POSTS: 'Articles',
                 PAGES: 'Pages',
-                CATEGORIES: 'Categories',
+                CATEGORIES: 'Catégories',
                 TAGS: 'Tags',
                 UNTITLED: '(Untitled)',
             },
